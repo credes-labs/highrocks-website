@@ -1,0 +1,4 @@
+.features-hero { background: #101113; }
+.features-hero > img { mask-image: linear-gradient(180deg, #000 45%, #000d 62%, #0005 82%, transparent 100%); }
+.features-hero-fade { position: absolute; inset: auto 0 0; height: 45%; background: linear-gradient(180deg, transparent, #10111344 35%, #101113bb 72%, #101113); pointer-events: none; }
+.features-drills { background: linear-gradient(180deg, #101113, #121820 46%, #10151b 74%, #0c0e10 100%); }

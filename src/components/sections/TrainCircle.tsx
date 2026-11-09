@@ -1,7 +1,4 @@
-"use client";
-
 import Image from "next/image";
-import { useState, type CSSProperties } from "react";
 import "./TrainCircle.css";
 
 const stations = [
@@ -24,19 +21,14 @@ function StationIcon({ type }: { type: string }) {
 }
 
 export function TrainCircle() {
-  const [chapter, setChapter] = useState(1);
   return (
-    <section id="info-centre" className="journey" aria-labelledby="journey-heading" aria-roledescription="carousel">
+    <section id="info-centre" className="journey" aria-labelledby="journey-heading">
       <div className="journey-canvas">
         <div className="journey-grid" aria-hidden="true" />
         <header className="journey-header">
           <div className="journey-label"><svg viewBox="0 0 28 28" aria-hidden="true">{[[6,5],[14,7],[23,4],[20,13],[12,17],[5,24],[21,23]].map(([x,y], i)=><circle key={i} cx={x} cy={y} r="2" fill="currentColor" />)}</svg><span>The journey</span></div>
           <span className="journey-header-line" aria-hidden="true" />
-          <div className="journey-controls">
-            <span className="journey-counter" aria-live="polite" aria-atomic="true">0{chapter + 1}<span>/03</span></span>
-            <button type="button" aria-label="Previous journey chapter" onClick={() => setChapter((chapter + 2) % 3)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg></button>
-            <button type="button" aria-label="Next journey chapter" onClick={() => setChapter((chapter + 1) % 3)}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
-          </div>
+
         </header>
         <div className="journey-orbit" aria-hidden="true">
           <svg viewBox="0 0 1000 1000" preserveAspectRatio="none"><ellipse cx="500" cy="500" rx="498" ry="498" /><ellipse className="journey-inner-orbit" cx="500" cy="500" rx="402" ry="402" />{[44,132,225,315].map(deg=><path key={deg} d="m494 1 6 12 6-12Z" transform={`rotate(${deg} 500 500)`} className="journey-direction" />)}</svg>
@@ -50,8 +42,8 @@ export function TrainCircle() {
         <span className="journey-cross journey-cross-left" aria-hidden="true" /><span className="journey-cross journey-cross-right" aria-hidden="true" /><span className="journey-cross journey-cross-top" aria-hidden="true" />
         <ul className="journey-stations" aria-label="Training, nutrition and recovery">
           {stations.map((station, index) => {
-            const position = (index + (chapter - 1) * 2 + 6) % 6;
-            return <li key={station.id} className={`journey-station journey-position-${position}`} style={{ "--station-order": index } as CSSProperties}>
+            const position = index;
+            return <li key={station.id} className={`journey-station journey-position-${position}`}>
               <article className="journey-card">
                 <Image src={station.image} alt="" fill sizes="(max-width: 600px) 200px, (max-width: 1000px) 230px, 340px" className="journey-card-image" />
                 <div className="journey-card-shade" />

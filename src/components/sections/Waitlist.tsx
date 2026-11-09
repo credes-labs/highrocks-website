@@ -12,17 +12,23 @@ export function Waitlist() {
       className="relative scroll-mt-24"
       style={{
         minHeight: d(955),
-        backgroundImage: "linear-gradient(180deg, #101113 0%, #19212b 55%, #1c2632 78%, #101113 100%)",
+        backgroundImage: "linear-gradient(180deg, #101113 0%, #19212b 48%, #1c2632 68%, #13191f 84%, #0e1115 94%, #0c0e10 100%)",
       }}
     >
-      {/* Phone render: bleeds above the section and is cropped by its bottom edge */}
+      {/* Fade the phone into the section before its bottom edge. */}
       <Reveal
         x={90}
         y={0}
         duration={1.2}
         amount={0.1}
         className="pointer-events-none absolute right-0 hidden overflow-hidden lg:block"
-        style={{ bottom: 0, width: d(1159), height: d(1232) }}
+        style={{
+          bottom: 0,
+          width: d(1159),
+          height: d(1232),
+          maskImage: "linear-gradient(to bottom, #000 0%, #000 72%, #000e 80%, #0008 89%, #0002 96%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(to bottom, #000 0%, #000 72%, #000e 80%, #0008 89%, #0002 96%, transparent 100%)",
+        }}
       >
         <Image
           src="/images/waitlist-phone.png"

@@ -1,9 +1,9 @@
-.journey { position: relative; scroll-margin-top: 50px; overflow: hidden; background: #0c0e10; }
+.journey { position: relative; scroll-margin-top: 50px; overflow: hidden; background: linear-gradient(180deg, #0c0e10 0%, #0c0e10 76%, #0d0f11 86%, #0f1012 94%, #101113 100%); }
 .journey-canvas { position: relative; width: 100%; max-width: 1920px; margin: auto; aspect-ratio: 1672 / 941; isolation: isolate; background: radial-gradient(ellipse at 50% 46%, #15181c44, transparent 58%); }
 .journey-canvas::before, .journey-canvas::after { content: ""; position: absolute; pointer-events: none; z-index: -1; }
-.journey-canvas::before { inset: 0; opacity: .3; background: repeating-linear-gradient(0deg, transparent 0 10px, #ffffff03 11px, transparent 12px); }
-.journey-canvas::after { inset: 0; background: linear-gradient(138deg, transparent 69%, #53617426 69.05%, #1b202833 85%, transparent 85.05%); clip-path: polygon(100% 46%, 100% 100%, 35% 100%); }
-.journey-grid { position: absolute; inset: 0 2.5%; opacity: .35; pointer-events: none; background: linear-gradient(90deg, #66778d22 1px, transparent 1px) 0 0 / 25% 100%, linear-gradient(#66778d20 1px, transparent 1px) 0 0 / 100% 47%; border-inline: 1px solid #66778d22; mask-image: radial-gradient(ellipse, #000, #0006 80%); }
+.journey-canvas::before { inset: 0; opacity: .3; background: repeating-linear-gradient(0deg, transparent 0 10px, #ffffff03 11px, transparent 12px); mask-image: linear-gradient(180deg, transparent, #000 16%, #000 80%, transparent); }
+.journey-canvas::after { inset: 0; background: linear-gradient(138deg, transparent 69%, #53617426 69.05%, #1b202833 85%, transparent 85.05%); clip-path: polygon(100% 46%, 100% 100%, 35% 100%); mask-image: linear-gradient(180deg, #000 70%, #000c 80%, #0004 93%, transparent 100%); }
+.journey-grid { position: absolute; inset: 0 2.5%; opacity: .35; pointer-events: none; background: linear-gradient(90deg, #66778d22 1px, transparent 1px) 0 0 / 25% 100%, linear-gradient(#66778d20 1px, transparent 1px) 0 0 / 100% 47%; border-inline: 1px solid #66778d22; mask-image: linear-gradient(180deg, transparent, #000 18%, #000 76%, transparent); }
 .journey-header { position: absolute; top: 3.7%; left: 2.9%; right: 2.5%; display: flex; align-items: center; gap: 20px; z-index: 3; }
 .journey-label { display: flex; align-items: center; gap: 23px; white-space: nowrap; color: #e1e4e8; font-family: var(--font-courier-prime), monospace; font-size: clamp(10px, .95vw, 16px); text-transform: uppercase; letter-spacing: .1em; }
 .journey-label svg { width: 29px; height: 29px; }
