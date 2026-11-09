@@ -85,6 +85,32 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   .hero-cta-arrow { transition: none; }
 }
 
+/* Continuous mobile footer frame, aligned to the square logo cell. */
+.footer-mobile-rails {
+  pointer-events: none;
+  position: absolute;
+  inset: 0 20px;
+  border-inline: 1px solid #ffffff26;
+}
+.footer-mobile-rails::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 22%;
+  border-left: 1px solid #ffffff26;
+}
+.footer-mobile-row { position: relative; }
+.footer-mobile-row::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  bottom: 0;
+  left: calc((100% - 100vw) / 2);
+  width: 100vw;
+  height: 1px;
+  background: linear-gradient(90deg, #ffffff12, #ffffff4d 20%, #ffffff4d 80%, #ffffff12);
+}
+
 /* Ecosystem wearables */
 @keyframes ecg-run {
   to { transform: translateX(-25%); }

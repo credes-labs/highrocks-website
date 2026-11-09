@@ -35,7 +35,7 @@ function VerticalHairline({ top, progress }: { top: number; progress: MotionValu
 }
 
 /**
- * "Built for Better Pacing." — pinned for ~1.6 screens while the brand mark is swept into view
+ * "Built for Better Pacing." — a brief scroll pin while the brand mark is swept into view
  * by the scroll position: it fades up out of blur, scales and un-tilts, and a diagonal wipe
  * follows the slash of the mark; the hairlines then draw themselves and the heading settles in.
  * (Design canvas 1728 × 955.)
@@ -45,7 +45,7 @@ export function Pacing() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 85%", "end end"] });
   // A touch of spring makes wheel steps feel continuous instead of stepped.
-  const p = useSpring(scrollYProgress, { stiffness: 140, damping: 28, mass: 0.4 });
+  const p = useSpring(scrollYProgress, { stiffness: 180, damping: 30, mass: 0.3 });
 
   const markOpacity = useTransform(p, [0, 0.28], [0, 1]);
   const markScale = useTransform(p, [0, 0.62], [0.5, 1]);
@@ -70,7 +70,7 @@ export function Pacing() {
     <section
       id="pacing"
       ref={ref}
-      className="relative w-full [--mt:50%] [--mw:min(96vw,520px)] [--pin:120vh] [--sh:100svh] md:[--mt:calc(87*var(--d))] md:[--mw:calc(865*var(--d))] md:[--pin:160vh] md:[--sh:max(420px,calc(955*var(--d)))]"
+      className="relative w-full [--mt:50%] [--mw:min(96vw,520px)] [--pin:50vh] [--sh:100svh] md:[--mt:calc(87*var(--d))] md:[--mw:calc(865*var(--d))] md:[--pin:65vh] md:[--sh:max(420px,calc(955*var(--d)))]"
       style={{ height: reduce ? "var(--sh)" : "calc(var(--sh) + var(--pin))" }}
     >
       <div

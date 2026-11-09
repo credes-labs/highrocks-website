@@ -62,56 +62,58 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
         aria-hidden
       />
 
-      {/* Mobile / tablet */}
-      <div className="relative mx-auto max-w-3xl px-5 pb-8 pt-16 lg:hidden">
-        <div className="flex items-end justify-between gap-6">
-          <p className="text-[34px] leading-[40px] tracking-[-0.067em]">
+      {/* Mobile / tablet: one continuous frame through every footer cell. */}
+      <div className="footer-mobile relative mx-auto max-w-3xl px-5 pt-10 lg:hidden">
+        <div className="footer-mobile-rails" aria-hidden />
+        <div className="footer-mobile-row grid grid-cols-[22%_1fr] border-t border-white/20">
+          <Socials className="flex-col justify-center py-6" style={{ gap: 12 }} compact />
+          <p className="self-center px-4 py-8 text-[clamp(28px,6.5vw,42px)] leading-[1.15] tracking-[-0.067em]">
             <span className="block capitalize text-ink">Be the First.</span>
             <span className="block capitalize text-accent">Be There.</span>
           </p>
-          <Socials className="shrink-0" style={{ gap: 10 }} compact />
         </div>
 
-        <nav aria-label="Footer" className="mt-10 border-t border-white/15">
+        <nav aria-label="Footer">
           {footerLinks
             .filter((l) => l.label !== "Text")
-            .map((l) => (
+            .map((l, i) => (
               <a
                 key={l.label}
                 href={l.href}
-                className="flex items-center justify-between border-b border-white/15 py-5 font-grotesk text-[14px] uppercase tracking-[0.15em] text-white transition-colors active:bg-white/5"
+                className="footer-mobile-row grid grid-cols-[22%_1fr] items-center font-grotesk text-[12px] uppercase tracking-[0.12em] text-white transition-colors active:bg-white/5"
               >
-                {l.label}
-                <span aria-hidden className="text-accent">
-                  →
+                <span aria-hidden className="py-5 text-center text-[10px] tracking-[0.2em] text-accent/50">0{i + 1}</span>
+                <span className="flex items-center justify-between gap-2 px-4 py-5">
+                  {l.label}
+                  <span aria-hidden className="text-accent">&rarr;</span>
                 </span>
               </a>
             ))}
         </nav>
 
-        <div className="mt-12 grid grid-cols-[22%_1fr] items-center border-y border-white/40" aria-label="Highrocks">
-          <div className="border-x border-white/20 p-2 sm:p-3">
+        <div className="footer-mobile-row h-8" aria-hidden />
+        <div className="footer-mobile-row grid grid-cols-[22%_1fr] items-center" aria-label="Highrocks">
+          <div className="aspect-square p-2 sm:p-3">
             <Svg name="logo-footer" width={264} height={263} className="h-auto w-full" />
           </div>
           <p className="whitespace-nowrap pl-3 text-[clamp(24px,8vw,62px)] uppercase leading-none tracking-[0.04em] text-white" aria-hidden>
             Highrocks
           </p>
         </div>
-        <p className="mt-3 text-center font-grotesk text-[10px] uppercase tracking-[0.3em] text-[#889fc3]">
-          Intensity rises here
-        </p>
+        <div className="footer-mobile-row grid grid-cols-[22%_1fr]">
+          <div aria-hidden />
+          <p className="px-4 py-4 font-grotesk text-[8px] uppercase tracking-[0.22em] text-[#889fc3] sm:text-[10px]">
+            Intensity rises here
+          </p>
+        </div>
 
-        <div className="mt-10 flex flex-col gap-2 border-t border-white/15 pt-6 text-[13px] font-light text-muted">
-          <p>© 2026 Highrocks. All rights reserved.</p>
-          <div className="flex items-center justify-between">
-            <a href="#terms" className="hover:underline">
-              Terms &amp; Conditions
-            </a>
+        <div className="grid grid-cols-[22%_1fr] text-[11px] font-light leading-relaxed text-muted sm:text-[13px]">
+          <div aria-hidden />
+          <div className="flex flex-col items-start gap-3 px-4 py-6">
+            <a href="#terms" className="hover:underline">Terms &amp; Conditions</a>
+            <p>&copy; 2026 Highrocks. All rights reserved.</p>
             <p>
-              Built with &lt;3 by C
-              <a href="https://credes.in/" target="_blank" rel="noreferrer noopener" className="underline">
-                redes
-              </a>
+              Built with &lt;3 by <a href="https://credes.in/" target="_blank" rel="noreferrer noopener" className="underline">Credes</a>
             </p>
           </div>
         </div>

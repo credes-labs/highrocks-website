@@ -1,7 +1,8 @@
 "use client";
 
 import { useId, useState, type FormEvent, type ReactNode } from "react";
-import { BoltIcon, CalendarIcon, CheckIcon, MailIcon, PhoneIcon, UserIcon } from "@/components/ui/LineIcons";
+import { BoltIcon, CheckIcon, MailIcon, PhoneIcon, UserIcon } from "@/components/ui/LineIcons";
+import { DateOfBirthField } from "@/components/ui/DateOfBirthField";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -57,12 +58,6 @@ function Field({ index, label, name, icon, type = "text", placeholder, autoCompl
           autoComplete={autoComplete}
           placeholder={placeholder}
           onChange={(e) => onValue(name, e.currentTarget.value.trim().length > 0 && e.currentTarget.validity.valid)}
-          onFocus={(e) => {
-            if (name === "dob") e.currentTarget.type = "date";
-          }}
-          onBlur={(e) => {
-            if (name === "dob" && !e.currentTarget.value) e.currentTarget.type = "text";
-          }}
           className="min-w-0 flex-1 bg-transparent px-4 text-base font-light text-ink placeholder:text-ink/45 focus:outline-none"
         />
       </div>
@@ -132,7 +127,7 @@ export function WaitlistForm({ className = "" }: { className?: string }) {
         <Field index="01" label="Name" name="name" icon={<UserIcon />} placeholder="Your name" autoComplete="name" required filled={!!filled.name} onValue={onValue} />
         <Field index="02" label="Email" name="email" icon={<MailIcon />} type="email" placeholder="you@email.com" autoComplete="email" required filled={!!filled.email} onValue={onValue} />
         <Field index="03" label="Phone" name="phone" icon={<PhoneIcon />} type="tel" placeholder="+91 97…" autoComplete="tel" filled={!!filled.phone} onValue={onValue} />
-        <Field index="04" label="Date of birth" name="dob" icon={<CalendarIcon />} placeholder="DD / MM / YYYY" autoComplete="bday" filled={!!filled.dob} onValue={onValue} />
+        <DateOfBirthField onValue={onValue} />
       </div>
 
       <button
