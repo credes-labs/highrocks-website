@@ -1,6 +1,6 @@
-# HighRocks landing page
+# HighRocks website
 
-Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS v4. Built from the Figma frame "Landing Page" (1728px canvas).
+Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind CSS v4.
 
 ```bash
 npm install
