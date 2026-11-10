@@ -39,7 +39,7 @@ export function LatestRows() {
     <section aria-labelledby="latest-heading">
       <h2
         id="latest-heading"
-        className="px-5 text-[clamp(40px,3.7vw,64px)] font-normal capitalize leading-[1.06] tracking-[-0.0375em] text-ink lg:px-0 lg:pl-[calc(71*var(--d))]"
+        className="headline px-4 text-[clamp(48px,7vw,128px)] sm:px-6 lg:px-8"
       >
         Latest
       </h2>

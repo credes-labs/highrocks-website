@@ -4,10 +4,13 @@ import { ArticlesCarousel } from "@/components/articles/ArticlesCarousel";
 import { ArticleBrowser } from "@/components/articles/ArticleBrowser";
 import { JoinCta } from "@/components/sections/JoinCta";
 import { Footer } from "@/components/sections/Footer";
+import { gutter } from "@/lib/design";
 
 export const metadata: Metadata = {
-  title: "Articles — HighRocks",
-  description: "Read the latest Hyrox articles, blogs and training guides from HighRocks.",
+  title: "Hyrox Training Articles, Blogs & Guides",
+  description:
+    "Hyrox training articles, race guides and athlete stories: pacing, station technique, nutrition and recovery.",
+  alternates: { canonical: "/articles" },
 };
 
 export default function ArticlesPage() {
@@ -15,12 +18,11 @@ export default function ArticlesPage() {
     <>
       <Navbar />
       <main>
-        <header className="relative mx-auto flex max-w-[1728px] flex-col gap-4 px-5 pb-10 pt-[150px] lg:block lg:h-[calc(396*var(--d))] lg:px-0 lg:pb-0 lg:pt-0">
-          <h1 className="text-[clamp(44px,3.7vw,64px)] font-normal capitalize leading-[1.06] tracking-[-0.0375em] text-ink lg:absolute lg:left-[calc(313*var(--d))] lg:top-[calc(254*var(--d))]">
-            Articles
-          </h1>
-          <p className="max-w-[403px] text-[clamp(16px,1.16vw,20px)] capitalize leading-[22.75px] tracking-[0.035em] text-muted lg:absolute lg:left-[calc(1059*var(--d))] lg:top-[calc(303*var(--d))]">
-            Our features help you to train, breathe and maintain proper form to be your best self and athlete.
+        <header className={`pb-10 pt-[140px] lg:pb-16 lg:pt-[calc(220*var(--d))] ${gutter}`}>
+          <h1 className="display text-[clamp(56px,11vw,200px)]">Hyrox articles &amp; guides</h1>
+          <p className="lede mt-6">
+            Race guides, pacing advice, station technique, nutrition and athlete stories for anyone
+            training for a Hyrox race.
           </p>
         </header>
 

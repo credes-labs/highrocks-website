@@ -9,8 +9,10 @@ import "./features.css";
 import { d } from "@/lib/design";
 
 export const metadata: Metadata = {
-  title: "Features — HighRocks",
-  description: "Drill guidance, pace calculator and split ledger — everything you need to train properly for Hyrox.",
+  title: "Hyrox Pace Calculator, Drill Library & Race Simulation",
+  description:
+    "Plan your Hyrox race with a pace calculator for all 16 segments, train every station with goal-timed drills, and rehearse with a full race simulation.",
+  alternates: { canonical: "/features" },
 };
 
 const DIAL_ORIGIN = 1044; // canvas y where the dial block starts

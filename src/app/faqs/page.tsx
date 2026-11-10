@@ -3,13 +3,15 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { JoinCta } from "@/components/sections/JoinCta";
 import { FaqBrowser } from "@/components/faq/FaqBrowser";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { gutter } from "@/lib/design";
 import { Reveal } from "@/components/motion/Reveal";
 import { faqGroups } from "@/lib/content";
 
 export const metadata: Metadata = {
-  title: "FAQs — HighRocks",
-  description: "Answers about Hyrox, pacing, drills, wearables and early access to HighRocks.",
+  title: "Hyrox FAQs: Race Format, Stations, Pacing & Training",
+  description:
+    "Answers to common Hyrox questions: what the race is, the 8 stations and divisions, good finish times, how to pace it, and how the HighRocks app helps you train.",
+  alternates: { canonical: "/faqs" },
 };
 
 export default function FaqsPage() {
@@ -24,12 +26,12 @@ export default function FaqsPage() {
     <>
       <Navbar />
       <main>
-        <section className="px-5 pb-16 pt-[150px] lg:px-[clamp(20px,6.13vw,106px)] lg:pb-24 lg:pt-[calc(240*var(--d))]">
-          <Reveal className="mx-auto max-w-[1100px]">
-            <Eyebrow>Early access</Eyebrow>
-            <h1 className="mt-4 text-[clamp(44px,3.7vw,64px)] font-normal leading-[1.06] tracking-[-0.0375em] text-accent">FAQs</h1>
-            <p className="mt-4 max-w-[560px] text-[clamp(16px,1.16vw,20px)] leading-[1.5] text-muted">
-              Everything about the race, the training and the app. Can&apos;t find it? Join the waitlist and ask us directly.
+        <section className={`pb-16 pt-[140px] lg:pb-24 lg:pt-[calc(220*var(--d))] ${gutter}`}>
+          <Reveal>
+            <h1 className="display text-[clamp(56px,11vw,200px)]">Hyrox FAQs</h1>
+            <p className="lede mt-6">
+              The Hyrox race format, the 8 stations and divisions, good finish times, how to pace a
+              Hyrox race, and how HighRocks helps you train for one.
             </p>
           </Reveal>
           <div className="mt-12 lg:mt-16">

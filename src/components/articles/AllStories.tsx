@@ -10,7 +10,7 @@ export function AllStories() {
       <div className="flex items-center justify-between gap-6">
         <h2
           id="all-stories-heading"
-          className="text-[clamp(40px,3.7vw,64px)] font-normal capitalize leading-[1.06] tracking-[-0.0375em] text-ink"
+          className="headline text-[clamp(48px,7vw,128px)]"
         >
           All Stories
         </h2>

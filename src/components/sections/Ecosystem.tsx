@@ -3,7 +3,7 @@
 import { useRef } from "react";
 import { useInView } from "motion/react";
 import { Reveal } from "@/components/motion/Reveal";
-import { Eyebrow } from "@/components/ui/Eyebrow";
+import { gutter } from "@/lib/design";
 import { AppleWatch, FitbitWatch, FitStage, GarminWatch, Rig, WhoopBand, useLive } from "@/components/ecosystem/Watches";
 import { type Live } from "@/components/ecosystem/Screens";
 import { wearables } from "@/lib/content";
@@ -13,11 +13,10 @@ type Wearable = (typeof wearables)[number];
 function Heading() {
   return (
     <>
-      <h2 className="text-center text-[clamp(30px,3.01vw,52px)] font-normal capitalize leading-[1.154] tracking-[-0.046em] text-accent">
-        <span className="text-[#f1f1f1]">Connect your </span>ecosystem.
-      </h2>
-      <p className="mt-3 text-center text-[clamp(16px,1.16vw,20px)] capitalize leading-[22.75px] tracking-[0.035em] text-muted">
-        Sync your data from devices you trust.
+      <h2 className="display text-[clamp(52px,9.4vw,172px)]">Sync the watch you train with.</h2>
+      <p className="lede mt-6">
+        Coming soon: connect Apple Watch, Garmin, Whoop and Fitbit. Heart rate, pace and recovery data
+        flow straight into your Hyrox training plan, so every split is measured, not guessed.
       </p>
     </>
   );
@@ -56,14 +55,9 @@ function WearableRow({ item }: { item: Wearable }) {
 export function Ecosystem() {
   return (
     <section id="ecosystem" className="relative py-20 lg:py-[calc(110*var(--d))]">
-      <div className="mx-auto max-w-[1516px] px-5 lg:px-[clamp(20px,6.13vw,106px)]">
-        <Reveal className="mx-auto max-w-[547px]">
-          <Eyebrow align="center" fill={163}>
-            Coming soon
-          </Eyebrow>
-          <div className="mt-[17px]">
-            <Heading />
-          </div>
+      <div className={gutter}>
+        <Reveal>
+          <Heading />
         </Reveal>
       </div>
       <div className="mt-4 flex flex-col gap-2 overflow-x-clip lg:mt-8 lg:gap-6">

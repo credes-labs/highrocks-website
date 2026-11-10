@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { d } from "@/lib/design";
-import { Eyebrow } from "@/components/ui/Eyebrow";
 import { Reveal } from "@/components/motion/Reveal";
 import { WaitlistForm } from "./WaitlistForm";
 
@@ -12,7 +11,7 @@ export function Waitlist() {
       className="relative scroll-mt-24"
       style={{
         minHeight: d(955),
-        backgroundImage: "linear-gradient(180deg, #101113 0%, #19212b 48%, #1c2632 68%, #13191f 84%, #0e1115 94%, #0c0e10 100%)",
+        backgroundImage: "linear-gradient(180deg, #101113 0%, #19212b 48%, #1c2632 68%, #161c24 84%, #121519 94%, #101113 100%)",
       }}
     >
       {/* Fade the phone into the section before its bottom edge. */}
@@ -42,7 +41,14 @@ export function Waitlist() {
       </Reveal>
 
       {/* Mobile: the phone render becomes a cropped banner that melts into the page */}
-      <div className="relative mx-auto h-[clamp(420px,115vw,620px)] max-w-[620px] overflow-hidden lg:hidden" aria-hidden>
+      <div
+        className="relative mx-auto h-[clamp(420px,115vw,620px)] max-w-[620px] overflow-hidden lg:hidden"
+        style={{
+          maskImage: "linear-gradient(180deg, transparent 0%, #000 18%, #000 55%, transparent 100%)",
+          WebkitMaskImage: "linear-gradient(180deg, transparent 0%, #000 18%, #000 55%, transparent 100%)",
+        }}
+        aria-hidden
+      >
         <Image
           src="/images/waitlist-phone.png"
           alt=""
@@ -51,7 +57,6 @@ export function Waitlist() {
           sizes="100vw"
           className="absolute left-1/2 top-[-12%] h-auto w-full max-w-none -translate-x-1/2"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,#101113_0%,transparent_22%,transparent_65%,#101113_100%)]" />
       </div>
 
       <div
@@ -62,17 +67,14 @@ export function Waitlist() {
           className="mx-auto w-full max-w-[564px] lg:mx-0 lg:pt-[var(--wl-top)] lg:ml-[var(--wl-left)] [--wl-left:calc(132*var(--d))] [--wl-top:calc(255*var(--d))]"
           y={44}
         >
-          <Eyebrow>Early access</Eyebrow>
-          <h2 className="mt-[17px] -ml-1 text-[clamp(34px,3.01vw+8px,52px)] font-normal capitalize leading-[1.154] tracking-[-0.046em] text-accent">
-            Be the first one to
-            <br />
-            <span className="text-ink-soft">Join HighRocks.</span>
+          <p className="font-grotesk text-[11px] uppercase tracking-[0.22em] text-[#8b93a1]">Early access</p>
+          <h2 className="mt-4 text-[clamp(36px,3.2vw,54px)] font-[480] leading-[1.05] tracking-[-0.045em] text-ink">
+            Be the first to <span className="text-accent">join HighRocks.</span>
           </h2>
-          <p className="mt-[31px] max-w-[492px] text-[clamp(16px,1.16vw,20px)] capitalize leading-[22.75px] tracking-[0.035em] text-muted">
-            Every Session. Every Metric. Every Improvement. Designed to help you train in Hyrox
-            with intention.
+          <p className="mt-4 max-w-[420px] text-[16px] font-[450] leading-[24px] text-[#8b93a1]">
+            Every session, every metric, every improvement. Built for training Hyrox with intention.
           </p>
-          <WaitlistForm className="mt-[40px] max-w-[522px] lg:max-w-[max(420px,calc(522*var(--d)))]" />
+          <WaitlistForm className="mt-9 max-w-[420px]" />
         </Reveal>
       </div>
     </section>

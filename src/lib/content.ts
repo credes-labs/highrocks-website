@@ -41,10 +41,70 @@ export const storyBody = [
 ] as const;
 
 export const featureTabs = [
-  { id: "pace", short: "Pace", title: "Pace Calculator", blurb: "Structured workouts that build real fitness." },
-  { id: "drills", short: "Drills", title: "Drill Library", blurb: "Structured workouts that build real fitness." },
-  { id: "race", short: "Race Sim", title: "Race Simulation", blurb: "Structured workouts that build real fitness." },
-  { id: "drills-2", short: "More Drills", title: "Drill Library", blurb: "Structured workouts that build real fitness." },
+  {
+    id: "pace",
+    short: "Pace",
+    title: "Pace Calculator",
+    blurb: "Structured workouts that build real fitness.",
+  },
+  {
+    id: "drills",
+    short: "Drills",
+    title: "Drill Library",
+    blurb: "Structured workouts that build real fitness.",
+  },
+  {
+    id: "race",
+    short: "Race Sim",
+    title: "Race Simulation",
+    blurb: "Structured workouts that build real fitness.",
+  },
+  {
+    id: "drills-2",
+    short: "More Drills",
+    title: "Drill Library",
+    blurb: "Structured workouts that build real fitness.",
+  },
+] as const;
+
+/** The landing-page feature story: one athlete, four stages, one climb. */
+export const featureStory = [
+  {
+    id: "pace",
+    stage: "Plan",
+    feature: "Pace Calculator",
+    title: "Start with one number: your Hyrox goal time.",
+    body: "The Hyrox pace calculator splits your goal across all 16 segments, eight 1 km runs and eight stations, so a 1:10:00 finish stops being a wish and becomes a split you can check at every roxzone.",
+    facts: ["Goal 01:10:00", "Run 1 · 03:45 per km", "SkiErg 1,000 m · 03:50"],
+    level: 0.2,
+  },
+  {
+    id: "drills",
+    stage: "Build",
+    feature: "Drill Library",
+    title: "Train the station that holds you back.",
+    body: "Every Hyrox station, from the SkiErg to the sled push and wall balls, has its own drills with a goal time and a reason. Most athletes lose their minutes in one or two stations. Find yours and close the gap.",
+    facts: ["Wall Balls · 3:15", "SkiErg · 4:00", "Sled Push · 2:45"],
+    level: 0.5,
+  },
+  {
+    id: "race",
+    stage: "Rehearse",
+    feature: "Race Simulation",
+    title: "Run a full Hyrox simulation before race day.",
+    body: "Go through all 16 segments in training, transitions included, and get a projected finish time. See exactly where your pace cracks while there is still time to fix it.",
+    facts: ["16 segments", "Projected 01:08:00", "48 s faster than plan"],
+    level: 0.8,
+  },
+  {
+    id: "drills-2",
+    stage: "Finish",
+    feature: "Back-Half Drills",
+    title: "Arrive at the last wall ball with something left.",
+    body: "The second half of a Hyrox race is where finish times are decided: grip on the farmers carry, glutes on the sandbag lunges, then 100 wall balls on tired legs. It is the part most people never train.",
+    facts: ["Sandbag Lunges · 4:30", "Farmers Carry · 1:45", "Wall Balls · 5:00"],
+    level: 1,
+  },
 ] as const;
 
 /** Polaroid cards around the "Train in Full Circle" dial. cx/cy are Figma canvas coordinates of each card's centre. */
@@ -83,16 +143,16 @@ export const ecosystemPills = [
 /** Landing-page highlights (the full list lives in faqGroups). */
 export const faqs = [
   {
-    q: "What is Hyrox?",
-    a: "Hyrox is a global fitness race: eight 1 km runs, each followed by a functional station — SkiErg, sled push, sled pull, burpee broad jumps, rowing, farmers carry, sandbag lunges and wall balls.",
+    q: "What is a Hyrox race?",
+    a: "Hyrox is an indoor fitness race of eight 1 km runs, each followed by a functional station: SkiErg, sled push, sled pull, burpee broad jumps, rowing, farmers carry, sandbag lunges and wall balls. That is 8 km of running and 8 stations, done in the same order at every event.",
+  },
+  {
+    q: "How should I pace a Hyrox race?",
+    a: "Set a goal finish time, then hold an even pace on the 8 runs instead of racing the first kilometre. Most time is lost in the second half, so leave something for the lunges and wall balls. The HighRocks pace calculator turns your goal time into a split for every run and station.",
   },
   {
     q: "What is HighRocks?",
-    a: "HighRocks is a training companion built for Hyrox. It plans your pacing, logs every split, drills each station and syncs with the wearable you already use.",
-  },
-  {
-    q: "When can I get access?",
-    a: "We are letting people in from the waitlist in small batches. Join with your email and we will let you know the moment your spot opens.",
+    a: "HighRocks is a Hyrox training app with a pace calculator, a drill library for every station and full race simulations. It is in early access: join the waitlist and we will email you when your spot opens.",
   },
 ] as const;
 

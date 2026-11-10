@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
 import { Archivo, Courier_Prime, Space_Grotesk } from "next/font/google";
+import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
+// Variable Archivo with the width axis: condensed, heavy display headings + regular body text.
 const archivo = Archivo({
   variable: "--font-archivo",
   subsets: ["latin"],
-  weight: ["300", "400", "600"],
+  axes: ["wdth"],
 });
 
 const spaceGrotesk = Space_Grotesk({
@@ -22,9 +24,29 @@ const courierPrime = Courier_Prime({
 });
 
 export const metadata: Metadata = {
-  title: "HighRocks — Master the 8 runs. Predict your finish.",
-  description:
-    "HighRocks is the Hyrox training companion: pace calculator, drill library and race simulation. Join the waitlist for early access.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "HighRocks — Hyrox Training App & Pace Calculator",
+    template: "%s | HighRocks",
+  },
+  description: SITE_DESCRIPTION,
+  keywords: SITE_KEYWORDS,
+  applicationName: SITE_NAME,
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title: "HighRocks — Master the 8 runs. Predict your Hyrox finish.",
+    description: SITE_DESCRIPTION,
+    url: "/",
+    images: [{ url: "/images/hero-bg.png", width: 1536, height: 1024, alt: "Hyrox athletes running on an indoor track" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "HighRocks — Master the 8 runs. Predict your Hyrox finish.",
+    description: SITE_DESCRIPTION,
+    images: ["/images/hero-bg.png"],
+  },
 };
 
 export const viewport: Viewport = {

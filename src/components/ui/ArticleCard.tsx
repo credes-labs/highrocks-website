@@ -38,7 +38,7 @@ export function ArticleCard({
           <Link href={`/articles/${article.slug}`}>{article.title}</Link>
         </h3>
         <ArticleMeta readTime={article.readTime} posted={article.posted} />
-        <p className="text-[16px] capitalize leading-[22.75px] tracking-[0.044em] text-muted">{article.excerpt}</p>
+        <p className="copy">{article.excerpt}</p>
         <Button href={`/articles/${article.slug}`} className="h-[47px] w-[173px]">
           Read More
         </Button>

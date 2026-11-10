@@ -70,7 +70,7 @@ export function CategoryTrio() {
       <div className="relative mx-auto grid max-w-3xl gap-14 px-5 py-16 sm:grid-cols-3 lg:hidden">
         {categories.map((c) => (
           <div key={c.id} className="flex flex-col gap-4">
-            <h2 className={`text-[44px] leading-[1.2] tracking-[-0.044em] capitalize ${c.headingColor}`}>{c.heading}</h2>
+            <h2 className="headline text-[56px]">{c.heading}</h2>
             <Image
               src={`/images/pages/${c.image}.png`}
               alt=""
@@ -79,7 +79,7 @@ export function CategoryTrio() {
               sizes="(min-width: 640px) 30vw, 90vw"
               className="aspect-[348/268] w-full object-cover"
             />
-            <p className="text-[26px] capitalize leading-[1.28] tracking-[-0.075em] text-ink">{c.title}</p>
+            <p className="text-[22px] leading-[1.25] tracking-[-0.03em] text-ink">{c.title}</p>
             <Button href={c.href} className="w-fit px-6">
               {c.cta.label}
             </Button>
@@ -103,7 +103,7 @@ export function CategoryTrio() {
         {categories.map((c) => (
           <div key={c.id}>
             <h2
-              className={`absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap capitalize tracking-[-0.044em] ${c.headingColor}`}
+              className="headline absolute -translate-x-1/2 -translate-y-1/2 whitespace-nowrap"
               style={{
                 left: d(c.centerX),
                 top: d(1450.5 - ORIGIN_Y),
@@ -131,7 +131,7 @@ export function CategoryTrio() {
             </Link>
 
             <p
-              className="absolute -translate-y-1/2 capitalize tracking-[-0.075em] text-ink"
+              className="absolute -translate-y-1/2 tracking-[-0.05em] text-ink"
               style={{
                 left: d(c.box.x - (c.id === "blogs" ? 3 : 0)),
                 top: d(c.titleY - ORIGIN_Y),
@@ -143,7 +143,7 @@ export function CategoryTrio() {
               {c.title}
             </p>
             <p
-              className="absolute -translate-x-full -translate-y-1/2 text-right capitalize tracking-[0.035em] text-muted"
+              className="absolute -translate-x-full -translate-y-1/2 text-right text-ink/70"
               style={{
                 left: d(c.timeRight),
                 top: d(c.timeY - ORIGIN_Y),

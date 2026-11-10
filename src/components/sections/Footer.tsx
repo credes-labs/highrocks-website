@@ -67,9 +67,10 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
         <div className="footer-mobile-rails" aria-hidden />
         <div className="footer-mobile-row grid grid-cols-[22%_1fr] border-t border-white/20">
           <Socials className="flex-col justify-center py-6" style={{ gap: 12 }} compact />
-          <p className="self-center px-4 py-8 text-[clamp(28px,6.5vw,42px)] leading-[1.15] tracking-[-0.067em]">
-            <span className="block capitalize text-ink">Be the First.</span>
-            <span className="block capitalize text-accent">Be There.</span>
+          <p className="display self-center px-4 py-8 text-[clamp(34px,9vw,52px)]">
+            Be first.
+            <br />
+            Be there.
           </p>
         </div>
 
@@ -154,11 +155,12 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
 
         {/* Tagline + socials */}
         <p
-          className="absolute tracking-[-0.067em]"
-          style={{ left: d(109), top: d(7649 - ORIGIN_Y), fontSize: d(36), lineHeight: d(44) }}
+          className="display absolute"
+          style={{ left: d(109), top: d(7640 - ORIGIN_Y), fontSize: d(52) }}
         >
-          <span className="block capitalize text-ink">Be the First.</span>
-          <span className="block capitalize text-accent">Be There.</span>
+          Be first.
+          <br />
+          Be there.
         </p>
         <Socials fluid className="absolute" style={{ left: d(109), top: d(7767 - ORIGIN_Y) }} />
 

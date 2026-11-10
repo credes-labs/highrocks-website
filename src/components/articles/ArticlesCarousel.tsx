@@ -56,7 +56,7 @@ export function ArticlesCarousel() {
               </Link>
               <div className="flex min-w-0 flex-1 flex-col justify-between gap-6">
                 <div className="flex flex-col gap-[22px]">
-                  <h2 className="text-[clamp(22px,1.85vw,32px)] font-normal capitalize leading-[1.15] tracking-[-0.075em] text-accent">
+                  <h2 className="text-[clamp(22px,1.85vw,32px)] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
                     {article.title}
                   </h2>
                   <ArticleMeta readTime={article.readTime} posted={article.posted} />

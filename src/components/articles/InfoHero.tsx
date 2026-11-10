@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { d } from "@/lib/design";
+import { d, gutter } from "@/lib/design";
 
 /** "Stories" hero (design canvas 1728 × 1044). */
 export function InfoHero() {
@@ -26,14 +26,13 @@ export function InfoHero() {
       />
 
       <div
-        className="relative z-10 mx-auto flex max-w-[1728px] flex-col gap-6 px-5 pt-[150px] lg:block lg:px-0 lg:pt-0"
+        className={`relative z-10 flex flex-col justify-end gap-6 pb-12 pt-[150px] lg:pb-[calc(90*var(--d))] ${gutter}`}
         style={{ minHeight: "inherit" }}
       >
-        <h1 className="text-[clamp(44px,3.7vw,64px)] font-normal capitalize leading-[1.06] tracking-[-0.0375em] text-ink lg:absolute lg:left-[calc(317*var(--d))] lg:top-[calc(805*var(--d))]">
-          Stories
-        </h1>
-        <p className="max-w-[403px] text-[clamp(16px,1.16vw,20px)] capitalize leading-[22.75px] tracking-[0.035em] text-muted lg:absolute lg:left-[calc(1014*var(--d))] lg:top-[calc(805*var(--d))]">
-          Our features help you to train, breathe and maintain proper form to be your best self and athlete.
+        <h1 className="headline text-[clamp(56px,11vw,200px)]">Hyrox stories</h1>
+        <p className="lede">
+          Guides, race reports and training advice for Hyrox athletes: from your first race to chasing
+          a podium in your age group.
         </p>
       </div>
     </section>

@@ -16,14 +16,14 @@ export async function generateMetadata({ params }: PageProps<"/articles/[slug]">
   const { slug } = await params;
   const article = articles.find((a) => a.slug === slug);
   return article
-    ? { title: `${article.title} — HighRocks`, description: article.excerpt }
-    : { title: "Article not found — HighRocks" };
+    ? { title: article.title, description: article.excerpt, alternates: { canonical: `/articles/${article.slug}` } }
+    : { title: "Article not found" };
 }
 
 function Prose({ paragraphs, className = "" }: { paragraphs: readonly string[]; className?: string }) {
   return (
     <div
-      className={`flex flex-col gap-[22.75px] text-[clamp(16px,1.16vw,20px)] capitalize leading-[22.75px] tracking-[0.035em] text-muted ${className}`}
+      className={`flex flex-col gap-[22.75px] copy ${className}`}
     >
       {paragraphs.map((p, i) => (
         <p key={i}>{p}</p>
@@ -66,10 +66,8 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
           </div>
 
           <div className="px-5 py-10 lg:static lg:p-0">
-            <h1 className="text-[clamp(38px,3.7vw,64px)] font-normal capitalize leading-[0.94] tracking-[-0.0375em] text-ink lg:absolute lg:left-[calc(687*var(--d))] lg:top-[calc(218*var(--d))] lg:whitespace-nowrap">
-              Try <span className="text-accent">Again.</span> Fail <span className="text-accent">Again.</span>
-              <br />
-              Fail <span className="text-accent">Better.</span>
+            <h1 className="display text-[clamp(40px,4.4vw,80px)] lg:absolute lg:left-[calc(687*var(--d))] lg:top-[calc(200*var(--d))] lg:w-[calc(960*var(--d))]">
+              {article.title}
             </h1>
             <ArticleMeta
               readTime={article.readTime}
@@ -141,7 +139,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
         </section>
 
         <section className="mx-auto mt-12 grid max-w-[1728px] gap-8 px-5 lg:mt-[calc(66*var(--d))] lg:grid-cols-[462fr_1223fr] lg:gap-[calc(43*var(--d))] lg:px-0">
-          <p className="text-[clamp(16px,1.16vw,20px)] capitalize leading-[22.75px] tracking-[0.035em] text-muted lg:pl-[calc(78*var(--d))] lg:pr-[calc(100*var(--d))] lg:pt-[calc(22*var(--d))]">
+          <p className="copy lg:pl-[calc(78*var(--d))] lg:pr-[calc(100*var(--d))] lg:pt-[calc(22*var(--d))]">
             Our features help you to train, breathe and maintain proper form to be your best self.
           </p>
           <Prose paragraphs={storyBody.slice(0, 4)} className="lg:w-[calc(717*var(--d))]" />
@@ -158,9 +156,9 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
         >
           <h2
             id="more-stories"
-            className="text-[clamp(36px,3.7vw,64px)] font-normal capitalize leading-[1.06] tracking-[-0.0375em] text-ink"
+            className="display text-[clamp(48px,7vw,128px)]"
           >
-            Explore more Stories
+            More Hyrox stories
           </h2>
           <div className="mt-6 grid grid-cols-1 border-b border-r border-white/20 md:grid-cols-3 lg:mt-[calc(46*var(--d))]">
             {more.map((a) => (

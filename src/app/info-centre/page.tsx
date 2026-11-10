@@ -8,8 +8,10 @@ import { JoinCta } from "@/components/sections/JoinCta";
 import { Footer } from "@/components/sections/Footer";
 
 export const metadata: Metadata = {
-  title: "Info Centre — HighRocks",
-  description: "Stories, articles, blogs and guides to help you train for Hyrox with intention.",
+  title: "Hyrox Info Centre: Stories, Guides & Training Advice",
+  description:
+    "Hyrox stories, guides and training advice from the HighRocks Info Centre: race prep, station technique, pacing, nutrition and recovery.",
+  alternates: { canonical: "/info-centre" },
 };
 
 export default function InfoCentrePage() {

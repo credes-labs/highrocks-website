@@ -17,7 +17,7 @@ export function FaqCard({ q, a, defaultOpen = false }: { q: string; a: string; d
           aria-expanded={open}
           aria-controls={panel}
           onClick={() => setOpen((v) => !v)}
-          className="flex w-full items-center justify-between gap-4 p-5 text-left text-[24px] font-normal capitalize leading-[30px] tracking-[-0.06em] text-accent focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-accent md:pointer-events-none md:p-0 md:text-[clamp(26px,2.08vw,36px)] md:leading-[38px] md:tracking-[-0.067em]"
+          className="flex w-full items-center justify-between gap-4 p-5 text-left text-[22px] font-semibold leading-[1.15] tracking-[-0.025em] text-ink focus-visible:outline-2 focus-visible:outline-offset-[-4px] focus-visible:outline-accent md:pointer-events-none md:p-0 md:text-[clamp(22px,1.9vw,32px)]"
         >
           {q}
           <span

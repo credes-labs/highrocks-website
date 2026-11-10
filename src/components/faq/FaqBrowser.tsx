@@ -20,7 +20,7 @@ function Item({ n, q, a, open, onToggle }: { n: number; q: string; a: string; op
           <span className={`mt-1.5 w-7 shrink-0 font-grotesk text-[12px] tabular-nums tracking-[0.15em] transition-colors ${open ? "text-accent" : "text-[#889fc3]"}`}>
             {String(n).padStart(2, "0")}
           </span>
-          <span className={`flex-1 text-[20px] font-normal leading-[1.25] tracking-[-0.04em] transition-colors md:text-[26px] ${open ? "text-accent" : "text-ink"}`}>{q}</span>
+          <span className={`flex-1 text-[19px] font-semibold leading-[1.25] tracking-[-0.02em] text-ink transition-colors md:text-[24px]`}>{q}</span>
           <span className="relative mt-2 size-5 shrink-0" aria-hidden>
             <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-accent" />
             <span className={`absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-accent transition-transform duration-300 ${open ? "scale-y-0" : ""}`} />
@@ -70,7 +70,7 @@ export function FaqBrowser() {
   const total = sections.reduce((n, g) => n + g.items.length, 0);
 
   return (
-    <div className="mx-auto max-w-[1100px]">
+    <div className="max-w-[1280px]">
       <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div role="tablist" aria-label="Question categories" className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 [scrollbar-width:none] md:mx-0 md:flex-wrap md:overflow-visible md:px-0 [&::-webkit-scrollbar]:hidden">
           {[{ id: "all", label: "All" }, ...faqGroups].map((g) => {
@@ -120,7 +120,7 @@ export function FaqBrowser() {
       {sections.map((g) => (
         <section key={g.id} className="mt-10">
           <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
-            <h2 className="text-[clamp(26px,2.4vw,36px)] font-normal leading-none tracking-[-0.05em] text-ink">{g.label}</h2>
+            <h2 className="display text-[clamp(40px,5vw,88px)]">{g.label}</h2>
             <p className="text-[15px] text-muted">{g.blurb}</p>
           </div>
           <ul className="border-t border-white/20">
