@@ -5,7 +5,7 @@ import { JoinCta } from "@/components/sections/JoinCta";
 import { FaqBrowser } from "@/components/faq/FaqBrowser";
 import { gutter } from "@/lib/design";
 import { Reveal } from "@/components/motion/Reveal";
-import { faqGroups } from "@/lib/content";
+import { getFaqGroups } from "@/lib/cms";
 import { WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -18,7 +18,8 @@ export const metadata: Metadata = pageMetadata({
   keywords: ["Hyrox FAQ", "what is Hyrox", "Hyrox stations", "good Hyrox time", "Hyrox divisions"],
 });
 
-export default function FaqsPage() {
+export default async function FaqsPage() {
+  const faqGroups = await getFaqGroups();
   const jsonLd = [
     breadcrumbLd([{ name: "FAQs", path: "/faqs" }]),
     {
@@ -43,7 +44,7 @@ export default function FaqsPage() {
             </p>
           </Reveal>
           <div className="mt-12 lg:mt-16">
-            <FaqBrowser />
+            <FaqBrowser groups={faqGroups} />
           </div>
         </section>
         <div className="mt-8 lg:mt-[calc(120*var(--d))]">

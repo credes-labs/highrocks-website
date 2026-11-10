@@ -5,7 +5,8 @@ import { ArticleBrowser } from "@/components/articles/ArticleBrowser";
 import { JoinCta } from "@/components/sections/JoinCta";
 import { Footer } from "@/components/sections/Footer";
 import { gutter } from "@/lib/design";
-import { articles } from "@/lib/content";
+import { getArticles } from "@/lib/cms";
+import type { Article } from "@/lib/cms-types";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
@@ -18,7 +19,7 @@ export const metadata: Metadata = pageMetadata({
   keywords: ["Hyrox articles", "Hyrox guides", "Hyrox training tips", "Hyrox technique"],
 });
 
-const jsonLd = [
+const jsonLd = (articles: Article[]) => [
   {
     "@type": "CollectionPage",
     "@id": absoluteUrl("/articles#webpage"),
@@ -38,7 +39,8 @@ const jsonLd = [
   },
 ];
 
-export default function ArticlesPage() {
+export default async function ArticlesPage() {
+  const articles = await getArticles();
   return (
     <>
       <Navbar />
@@ -51,10 +53,10 @@ export default function ArticlesPage() {
           </p>
         </header>
 
-        <ArticlesCarousel />
+        <ArticlesCarousel articles={articles} />
 
         <div className="mt-12 lg:mt-[calc(97*var(--d))]">
-          <ArticleBrowser />
+          <ArticleBrowser articles={articles} />
         </div>
 
         <div className="mt-20 lg:mt-[calc(228*var(--d))]">
@@ -62,7 +64,7 @@ export default function ArticlesPage() {
         </div>
       </main>
       <Footer overlap={176} />
-      <JsonLd data={jsonLd} />
+      <JsonLd data={jsonLd(articles)} />
     </>
   );
 }

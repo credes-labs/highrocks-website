@@ -5,14 +5,13 @@ import Link from "next/link";
 import { useState } from "react";
 import { ArticleMeta } from "@/components/ui/ArticleMeta";
 import { Button } from "@/components/ui/Button";
-import { articles } from "@/lib/content";
+import type { Article } from "@/lib/cms-types";
 
-/** The three newest stories. */
-const slides = articles.slice(0, 3);
 
 /** Featured stories carousel: centred slide with the neighbours peeking in, plus dot navigation. */
-export function ArticlesCarousel() {
-  const [active, setActive] = useState(1);
+export function ArticlesCarousel({ articles }: { articles: Article[] }) {
+  const slides = articles.slice(0, 3);
+  const [active, setActive] = useState(Math.min(1, articles.length - 1));
 
   return (
     <section aria-roledescription="carousel" aria-label="Featured stories">

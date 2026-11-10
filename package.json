@@ -2,21 +2,37 @@
   "name": "highrocks",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run setup && next dev",
+    "build": "npm run setup && next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "payload": "payload --use-swc",
+    "generate:types": "payload generate:types --use-swc",
+    "generate:importmap": "payload generate:importmap --use-swc",
+    "migrate:create": "payload migrate:create --use-swc",
+    "migrate": "payload migrate --use-swc",
+    "setup": "payload run src/payload/setup.ts --use-swc"
   },
   "dependencies": {
+    "@payloadcms/db-sqlite": "^3.93.0",
+    "@payloadcms/next": "^3.93.0",
+    "@payloadcms/ui": "^3.93.0",
     "@radix-ui/react-popover": "^1.3.1",
+    "graphql": "^16.15.0",
     "motion": "^14.10.1",
     "next": "16.4.5",
+    "payload": "^3.93.0",
     "react": "19.3.0",
     "react-day-picker": "^10.0.2",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
+    "@swc-node/register": "^1.12.1",
+    "@swc/core": "^1.16.22",
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -25,5 +41,8 @@
     "eslint-config-next": "16.4.5",
     "tailwindcss": "^4",
     "typescript": "^5"
+  },
+  "overrides": {
+    "dompurify": "^3.4.17"
   }
 }

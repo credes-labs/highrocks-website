@@ -6,11 +6,20 @@ import { LOGOMARK_PATHS } from "@/lib/logomark";
 export const ogSize = { width: 1200, height: 630 };
 export const ogContentType = "image/png";
 
-/** Reads an image from /public as a data URL, for use as an ImageResponse background. */
+const MEDIA_PREFIX = "/api/media/file/";
+
+/**
+ * Reads a site image as a data URL for an ImageResponse background: either a file in /public
+ * or a photo uploaded to the CMS (stored in /media).
+ */
 async function publicImage(src: string) {
   "use cache";
-  const buf = await readFile(join(process.cwd(), "public", src));
-  return `data:image/png;base64,${buf.toString("base64")}`;
+  const file = src.startsWith(MEDIA_PREFIX)
+    ? join(process.cwd(), "media", decodeURIComponent(src.slice(MEDIA_PREFIX.length).split("?")[0]))
+    : join(process.cwd(), "public", src);
+  const buf = await readFile(file);
+  const type = /.jpe?g$/i.test(file) ? "jpeg" : /.webp$/i.test(file) ? "webp" : "png";
+  return `data:image/${type};base64,${buf.toString("base64")}`;
 }
 
 type OgCard = {

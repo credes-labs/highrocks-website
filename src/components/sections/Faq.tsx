@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/Button";
 import { gutter } from "@/lib/design";
-import { faqs } from "@/lib/content";
+import type { FaqItem } from "@/lib/cms-types";
 import { Reveal } from "@/components/motion/Reveal";
 import { FaqCard } from "./FaqCard";
 
 /** FAQs header + three question cards. */
-export function Faq() {
+export function Faq({ faqs }: { faqs: FaqItem[] }) {
   return (
     <section
       id="faqs"

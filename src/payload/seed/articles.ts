@@ -1,39 +1,9 @@
-/**
- * Info Centre articles. Each one answers a real Hyrox question up front, then goes into detail,
- * so it reads well for people and can be quoted accurately by search and AI answer engines.
- */
+import type { Article } from "@/lib/cms-types";
 
-export type ArticleCategory = "Guides" | "Articles" | "Blogs";
+/** Starting content for the Articles collection; only used to seed an empty database. */
+export type SeedArticle = Omit<Article, "readTime" | "posted">;
 
-export type ArticleSection = {
-  heading: string;
-  paragraphs: readonly string[];
-  list?: readonly string[];
-};
-
-export type Article = {
-  slug: string;
-  title: string;
-  /** One- or two-sentence answer used for cards, meta descriptions and AI summaries. */
-  excerpt: string;
-  category: ArticleCategory;
-  /** ISO date (YYYY-MM-DD). */
-  published: string;
-  image: { src: string; alt: string };
-  intro: readonly string[];
-  sections: readonly ArticleSection[];
-  quote: string;
-  takeaways: readonly string[];
-  keywords: readonly string[];
-  /** Derived: "6 min". */
-  readTime: string;
-  /** Derived: "10 Nov 2026". */
-  posted: string;
-};
-
-type ArticleSource = Omit<Article, "readTime" | "posted">;
-
-const sources: ArticleSource[] = [
+export const seedArticles: SeedArticle[] = [
   {
     slug: "how-to-pace-a-hyrox-race",
     title: "How to pace a Hyrox race, split by split",
@@ -152,6 +122,7 @@ const sources: ArticleSource[] = [
   },
   {
     slug: "how-to-do-skierg-efficiently",
+    shortTitle: "How to do SkiErg efficiently",
     title: "How to do the SkiErg efficiently in Hyrox",
     excerpt:
       "Use your hips and lats, not your arms: hinge, pull the handles down past your hips, and hold a stroke rate you can sustain. Here is the technique and pacing for the 1,000 m SkiErg.",
@@ -207,6 +178,7 @@ const sources: ArticleSource[] = [
   },
   {
     slug: "sled-push-technique",
+    shortTitle: "Sled-push was tough until?",
     title: "Sled push was tough until I fixed these three things",
     excerpt:
       "Get low, lock your arms, and take short fast steps without stopping. These three changes make the Hyrox sled push faster and stop the sled from stalling.",
@@ -261,6 +233,7 @@ const sources: ArticleSource[] = [
   },
   {
     slug: "running-indoors-or-outdoors-for-hyrox",
+    shortTitle: "Running - Indoors or outdoors?",
     title: "Running for Hyrox: indoors or outdoors?",
     excerpt:
       "Do most of your running outdoors for volume, and add indoor or treadmill sessions to rehearse race conditions: flat surfaces, tight turns and running straight after a station.",
@@ -678,27 +651,3 @@ const sources: ArticleSource[] = [
     ],
   },
 ];
-
-const dateFmt = new Intl.DateTimeFormat("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
-
-function wordCount(a: ArticleSource) {
-  const text = [a.intro, ...a.sections.flatMap((s) => [s.heading, ...s.paragraphs, ...(s.list ?? [])]), a.takeaways].flat().join(" ");
-  return text.split(/\s+/).length;
-}
-
-/** Newest first. */
-export const articles: Article[] = sources
-  .map((a) => ({
-    ...a,
-    readTime: `${Math.max(3, Math.round(wordCount(a) / 200))} min`,
-    posted: dateFmt.format(new Date(a.published)),
-  }))
-  .sort((a, b) => b.published.localeCompare(a.published));
-
-export const getArticle = (slug: string) => articles.find((a) => a.slug === slug);
-
-/** Up to `n` other articles, same category first. */
-export function relatedArticles(article: Article, n = 3) {
-  const others = articles.filter((a) => a.slug !== article.slug);
-  return [...others.filter((a) => a.category === article.category), ...others.filter((a) => a.category !== article.category)].slice(0, n);
-}

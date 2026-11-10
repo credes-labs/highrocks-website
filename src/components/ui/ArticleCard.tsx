@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArticleMeta } from "@/components/ui/ArticleMeta";
 import { Button } from "@/components/ui/Button";
-import type { Article } from "@/lib/content";
+import type { Article } from "@/lib/cms-types";
 
 /** Story card: thumbnail, title, meta, excerpt and "Read More". Cards touch to form a ruled grid. */
 export function ArticleCard({

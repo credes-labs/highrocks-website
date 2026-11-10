@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ArticleCard } from "@/components/ui/ArticleCard";
 import { Button } from "@/components/ui/Button";
 import { Svg } from "@/components/ui/Svg";
-import { articles } from "@/lib/content";
+import type { Article } from "@/lib/cms-types";
 
 const LAYOUTS = [2, 3, 4] as const;
 type Cols = (typeof LAYOUTS)[number];
@@ -16,7 +16,7 @@ const colClass: Record<Cols, string> = {
 };
 
 /** Layout switcher (2/3/4 columns), the story grid and "Load More". */
-export function ArticleBrowser() {
+export function ArticleBrowser({ articles }: { articles: Article[] }) {
   const [cols, setCols] = useState<Cols>(3);
   const [visible, setVisible] = useState(6);
   const shown = articles.slice(0, visible);

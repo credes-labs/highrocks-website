@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ArticleCard } from "@/components/ui/ArticleCard";
 import { Svg } from "@/components/ui/Svg";
-import { articles } from "@/lib/content";
+import type { Article } from "@/lib/cms-types";
 
 /** "All Stories" — heading, "Blogs" link and a ruled 3 × 2 grid of cards. */
-export function AllStories() {
+export function AllStories({ articles }: { articles: Article[] }) {
   return (
     <section aria-labelledby="all-stories-heading" className="px-5 lg:px-[calc(71*var(--d))]">
       <div className="flex items-center justify-between gap-6">

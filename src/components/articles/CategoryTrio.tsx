@@ -3,59 +3,47 @@ import Link from "next/link";
 import { d } from "@/lib/design";
 import { Button } from "@/components/ui/Button";
 import { Svg } from "@/components/ui/Svg";
+import type { InfoCentreTile } from "@/lib/cms-types";
 
 const ORIGIN_Y = 1044; // top of this block on the Figma canvas
 
-const categories = [
+/** Fixed design positions for the three tiles; their content comes from the CMS. */
+const SLOTS = [
   {
     id: "articles",
-    heading: "Articles",
     headingColor: "text-accent",
     centerX: 315,
-    image: "category-articles",
     box: { x: 141, y: 1521, w: 348, h: 268 },
-    title: "Running - Indoors or outdoors?",
-    article: "/articles/running-indoors-or-outdoors-for-hyrox",
     titleY: 1852,
     timeY: 1834.5,
     timeRight: 489,
-    cta: { label: "Explore Articles", x: 141, y: 1913, w: 173 },
-    href: "/articles",
+    cta: { x: 141, y: 1913, w: 173 },
   },
   {
     id: "blogs",
-    heading: "Blogs",
     headingColor: "text-[#f1f1f1]",
     centerX: 865.5,
-    image: "category-blogs",
     box: { x: 690, y: 1521, w: 348, h: 191 },
-    title: "Sled-push was tough until?",
-    article: "/articles/sled-push-technique",
     titleY: 1770,
     timeY: 1753.5,
     timeRight: 1038,
-    cta: { label: "Explore Blogs", x: 690, y: 1829, w: 174 },
-    href: "/articles",
+    cta: { x: 690, y: 1829, w: 174 },
   },
   {
     id: "guides",
-    heading: "Guides",
     headingColor: "text-[#f1f1f1]",
     centerX: 1414,
-    image: "category-guides",
     box: { x: 1240, y: 1521, w: 348, h: 268 },
-    title: "How to do SkiErg efficiently",
-    article: "/articles/how-to-do-skierg-efficiently",
     titleY: 1852,
     timeY: 1834.5,
     timeRight: 1588,
-    cta: { label: "Read Guides", x: 1240, y: 1913, w: 175 },
-    href: "/articles",
+    cta: { x: 1240, y: 1913, w: 175 },
   },
 ] as const;
 
 /** Articles / Blogs / Guides entry points (design canvas 1728 wide, staggered middle column). */
-export function CategoryTrio() {
+export function CategoryTrio({ tiles }: { tiles: InfoCentreTile[] }) {
+  const categories = SLOTS.slice(0, tiles.length).map((slot, i) => ({ ...slot, tile: tiles[i] }));
   return (
     <section aria-label="Browse by type" className="relative">
       {/* Glow behind the block */}
@@ -73,18 +61,18 @@ export function CategoryTrio() {
       <div className="relative mx-auto grid max-w-3xl gap-14 px-5 py-16 sm:grid-cols-3 lg:hidden">
         {categories.map((c) => (
           <div key={c.id} className="flex flex-col gap-4">
-            <h2 className="headline text-[56px]">{c.heading}</h2>
+            <h2 className="headline text-[56px]">{c.tile.heading}</h2>
             <Image
-              src={`/images/pages/${c.image}.png`}
+              src={c.tile.article.image.src}
               alt=""
               width={1448}
               height={1086}
               sizes="(min-width: 640px) 30vw, 90vw"
               className="aspect-[348/268] w-full object-cover"
             />
-            <p className="text-[22px] leading-[1.25] tracking-[-0.03em] text-ink">{c.title}</p>
-            <Button href={c.href} className="w-fit px-6">
-              {c.cta.label}
+            <p className="text-[22px] leading-[1.25] tracking-[-0.03em] text-ink">{c.tile.title}</p>
+            <Button href={c.tile.ctaLink} className="w-fit px-6">
+              {c.tile.ctaLabel}
             </Button>
           </div>
         ))}
@@ -114,17 +102,17 @@ export function CategoryTrio() {
                 lineHeight: d(69),
               }}
             >
-              {c.heading}
+              {c.tile.heading}
             </h2>
 
             <Link
-              href={c.article}
+              href={`/articles/${c.tile.article.slug}`}
               className="absolute block"
               style={{ left: d(c.box.x), top: d(c.box.y - ORIGIN_Y), width: d(c.box.w), height: d(c.box.h) }}
-              aria-label={`${c.heading}: ${c.title}`}
+              aria-label={`${c.tile.heading}: ${c.tile.article.title}`}
             >
               <Image
-                src={`/images/pages/${c.image}.png`}
+                src={c.tile.article.image.src}
                 alt=""
                 width={1448}
                 height={1086}
@@ -143,7 +131,7 @@ export function CategoryTrio() {
                 lineHeight: d(41),
               }}
             >
-              {c.title}
+              {c.tile.title}
             </p>
             <p
               className="absolute -translate-x-full -translate-y-1/2 text-right text-ink/70"
@@ -155,11 +143,11 @@ export function CategoryTrio() {
                 lineHeight: d(22.75),
               }}
             >
-              10 min
+              {c.tile.article.readTime}
             </p>
 
             <Button
-              href={c.href}
+              href={c.tile.ctaLink}
               className="absolute h-auto"
               style={{
                 left: d(c.cta.x),
@@ -169,7 +157,7 @@ export function CategoryTrio() {
                 fontSize: d(12.691),
               }}
             >
-              {c.cta.label}
+              {c.tile.ctaLabel}
             </Button>
           </div>
         ))}

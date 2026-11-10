@@ -1,4 +1,5 @@
-import { articles, faqGroups, featureStory } from "@/lib/content";
+import { featureStory } from "@/lib/content";
+import { getArticles, getFaqGroups } from "@/lib/cms";
 import { HYROX_DEFINITION, SITE_DESCRIPTION, SITE_NAME, absoluteUrl } from "@/lib/site";
 
 const link = (title: string, path: string, note?: string) => `- [${title}](${absoluteUrl(path)})${note ? `: ${note}` : ""}`;
@@ -20,7 +21,8 @@ const header = () => [
 ];
 
 /** Short index for AI answer engines (https://llmstxt.org). */
-export function llmsTxt() {
+export async function llmsTxt() {
+  const articles = await getArticles();
   return [
     ...header(),
     "## Pages",
@@ -43,7 +45,8 @@ export function llmsTxt() {
 }
 
 /** Every article and FAQ in plain Markdown, so the whole site can be read in one request. */
-export function llmsFullTxt() {
+export async function llmsFullTxt() {
+  const [articles, faqGroups] = await Promise.all([getArticles(), getFaqGroups()]);
   const faqs = faqGroups.flatMap((g) => [`### ${g.label}`, "", ...g.items.flatMap((i) => [`**${i.q}**`, "", i.a, ""])]);
   const body = articles.flatMap((a) => [
     `## ${a.title}`,

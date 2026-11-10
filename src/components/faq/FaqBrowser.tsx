@@ -1,7 +1,7 @@
 "use client";
 
 import { useId, useMemo, useState } from "react";
-import { faqGroups } from "@/lib/content";
+import type { FaqGroup } from "@/lib/cms-types";
 
 function Item({ n, q, a, open, onToggle }: { n: number; q: string; a: string; open: boolean; onToggle: () => void }) {
   const id = useId();
@@ -41,10 +41,10 @@ function Item({ n, q, a, open, onToggle }: { n: number; q: string; a: string; op
 }
 
 /** Category tabs + search + accordion for the full FAQ list. */
-export function FaqBrowser() {
+export function FaqBrowser({ groups: faqGroups }: { groups: FaqGroup[] }) {
   const [group, setGroup] = useState<string>("all");
   const [query, setQuery] = useState("");
-  const [openKey, setOpenKey] = useState<string | null>("hyrox-0");
+  const [openKey, setOpenKey] = useState<string | null>(`${faqGroups[0]?.id}-0`);
 
   const sections = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -59,7 +59,7 @@ export function FaqBrowser() {
           .map((it) => ({ ...it, n: ++n })),
       }))
       .filter((g) => g.items.length > 0);
-  }, [group, query]);
+  }, [faqGroups, group, query]);
 
   const total = sections.reduce((n, g) => n + g.items.length, 0);
 

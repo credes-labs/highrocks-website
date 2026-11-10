@@ -1,12 +1,13 @@
 import type { MetadataRoute } from "next";
-import { articles } from "@/lib/content";
+import { getArticles } from "@/lib/cms";
 import { SITE_URL } from "@/lib/site";
 
 /** Date the landing and product pages last changed meaningfully. Bump it when they do. */
 const SITE_UPDATED = new Date("2026-11-10");
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const latestArticle = new Date(articles[0].published);
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const articles = await getArticles();
+  const latestArticle = articles[0] ? new Date(articles[0].updated ?? articles[0].published) : SITE_UPDATED;
   const pages: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, lastModified: SITE_UPDATED, changeFrequency: "weekly", priority: 1, images: [`${SITE_URL}/images/hero-bg.png`] },
     { url: `${SITE_URL}/features`, lastModified: SITE_UPDATED, changeFrequency: "monthly", priority: 0.9, images: [`${SITE_URL}/images/pages/features-hero.png`] },
@@ -18,7 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...pages,
     ...articles.map((a) => ({
       url: `${SITE_URL}/articles/${a.slug}`,
-      lastModified: new Date(a.published),
+      lastModified: new Date(a.updated ?? a.published),
       changeFrequency: "monthly" as const,
       priority: 0.6,
       images: [`${SITE_URL}${a.image.src}`],

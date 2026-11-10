@@ -6,25 +6,26 @@ import { JoinCta } from "@/components/sections/JoinCta";
 import { Footer } from "@/components/sections/Footer";
 import { ArticleCard } from "@/components/ui/ArticleCard";
 import { ArticleMeta } from "@/components/ui/ArticleMeta";
-import { articles, getArticle, relatedArticles, type Article } from "@/lib/content";
+import { getArticle, getArticles, getRelatedArticles } from "@/lib/cms";
+import type { Article } from "@/lib/cms-types";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { ORG_ID, WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 
-export function generateStaticParams() {
-  return articles.map((a) => ({ slug: a.slug }));
+export async function generateStaticParams() {
+  return (await getArticles()).map((a) => ({ slug: a.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps<"/articles/[slug]">): Promise<Metadata> {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = await getArticle(slug);
   if (!article) return { title: "Article not found", robots: { index: false } };
   return pageMetadata({
     title: article.title,
     description: article.excerpt,
     path: `/articles/${article.slug}`,
     keywords: article.keywords,
-    article: { published: article.published, section: article.category, tags: article.keywords },
+    article: { published: article.published, modified: article.updated, section: article.category, tags: article.keywords },
   });
 }
 
@@ -40,7 +41,7 @@ function articleLd(article: Article) {
       mainEntityOfPage: url,
       image: [absoluteUrl(article.image.src), absoluteUrl(`/articles/${article.slug}/opengraph-image`)],
       datePublished: article.published,
-      dateModified: article.published,
+      dateModified: article.updated ?? article.published,
       articleSection: article.category,
       keywords: article.keywords.join(", "),
       wordCount: [...article.intro, ...article.sections.flatMap((x) => [...x.paragraphs, ...(x.list ?? [])])].join(" ").split(/s+/).length,
@@ -96,10 +97,10 @@ function Band({ src, w, h }: { src: string; w: number; h: number }) {
 
 export default async function ArticlePage({ params }: PageProps<"/articles/[slug]">) {
   const { slug } = await params;
-  const article = getArticle(slug);
+  const article = await getArticle(slug);
   if (!article) notFound();
 
-  const more = relatedArticles(article);
+  const more = await getRelatedArticles(article);
   const [firstHalf, secondHalf] = [article.sections.slice(0, 2), article.sections.slice(2)];
 
   return (

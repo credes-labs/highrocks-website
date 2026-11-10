@@ -7,13 +7,15 @@ import { Features } from "@/components/sections/Features";
 import { Ecosystem } from "@/components/sections/Ecosystem";
 import { Faq } from "@/components/sections/Faq";
 import { Footer } from "@/components/sections/Footer";
-import { faqs, featureStory } from "@/lib/content";
+import { featureStory } from "@/lib/content";
+import { getHomeFaqs } from "@/lib/cms";
+import type { FaqItem } from "@/lib/cms-types";
 import { HYROX_DEFINITION, SITE_DESCRIPTION, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { APP_ID, ORG_ID, WEBSITE_ID } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
 
 /** Structured data so search engines and AI answer engines can describe HighRocks accurately. */
-const jsonLd = [
+const jsonLd = (faqs: FaqItem[]) => [
   {
     "@type": "WebPage",
     "@id": `${SITE_URL}/#webpage`,
@@ -48,7 +50,8 @@ const jsonLd = [
   },
 ];
 
-export default function Home() {
+export default async function Home() {
+  const faqs = await getHomeFaqs();
   return (
     <>
       <Navbar />
@@ -59,10 +62,10 @@ export default function Home() {
         <TrainCircle />
         <Features />
         <Ecosystem />
-        <Faq />
+        <Faq faqs={faqs} />
       </main>
       <Footer />
-      <JsonLd data={jsonLd} />
+      <JsonLd data={jsonLd(faqs)} />
     </>
   );
 }

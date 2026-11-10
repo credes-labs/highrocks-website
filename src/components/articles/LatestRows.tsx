@@ -2,12 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { d } from "@/lib/design";
-import { getArticle } from "@/lib/content";
+import type { Article } from "@/lib/cms-types";
 
-const rows = [
-  { slug: "walking-jogging-or-running-for-endurance", photo: "/images/polaroid-run.png", w: 1536, h: 1024, photoSide: "right", pos: "50% 28%" },
-  { slug: "cycling-for-hyrox-conditioning", photo: "/images/pages/latest-cycling.png", w: 1536, h: 1024, photoSide: "left", pos: "50% 72%" },
-  { slug: "rowing-1000m-in-hyrox", photo: "/images/pages/latest-rowing.png", w: 1448, h: 1086, photoSide: "right", pos: "50% 60%" },
+/** Fixed design layout for the rows; the article in each comes from the CMS. */
+const ROWS = [
+  { photoSide: "right", pos: "50% 28%" },
+  { photoSide: "left", pos: "50% 72%" },
+  { photoSide: "right", pos: "50% 60%" },
 ] as const;
 
 function TextPanel({ flip, title, href }: { flip: boolean; title: string; href: string }) {
@@ -33,7 +34,8 @@ function TextPanel({ flip, title, href }: { flip: boolean; title: string; href: 
 }
 
 /** "Latest" — three full-bleed rows alternating photo / text (design canvas 1728 wide). */
-export function LatestRows() {
+export function LatestRows({ articles }: { articles: Article[] }) {
+  const rows = ROWS.slice(0, articles.length).map((row, i) => ({ ...row, article: articles[i] }));
   return (
     <section aria-labelledby="latest-heading">
       <h2
@@ -45,8 +47,8 @@ export function LatestRows() {
       <div className="mt-8 lg:mt-[calc(36*var(--d))]">
         {rows.map((row, i) => {
           const photoLeft = row.photoSide === "left";
-          const article = getArticle(row.slug)!;
-          const href = `/articles/${row.slug}`;
+          const { article } = row;
+          const href = `/articles/${article.slug}`;
           return (
             <div
               key={i}
@@ -60,10 +62,10 @@ export function LatestRows() {
                 aria-label={article.title}
               >
                 <Image
-                  src={row.photo}
+                  src={article.image.src}
                   alt={article.image.alt}
-                  width={row.w}
-                  height={row.h}
+                  width={article.image.width ?? 1536}
+                  height={article.image.height ?? 1024}
                   sizes="(min-width: 1024px) 65vw, 100vw"
                   className="absolute inset-0 size-full object-cover"
                   style={{ objectPosition: row.pos }}
