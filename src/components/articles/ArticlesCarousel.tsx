@@ -7,11 +7,8 @@ import { ArticleMeta } from "@/components/ui/ArticleMeta";
 import { Button } from "@/components/ui/Button";
 import { articles } from "@/lib/content";
 
-const slides = [
-  { article: articles[0], image: "carousel-1" },
-  { article: articles[1], image: "carousel-2" },
-  { article: articles[2], image: "carousel-3" },
-] as const;
+/** The three newest stories. */
+const slides = articles.slice(0, 3);
 
 /** Featured stories carousel: centred slide with the neighbours peeking in, plus dot navigation. */
 export function ArticlesCarousel() {
@@ -30,9 +27,9 @@ export function ArticlesCarousel() {
             transform: `translateX(calc(-1 * ${active} * (var(--cw) + var(--cg))))`,
           }}
         >
-          {slides.map(({ article, image }, i) => (
+          {slides.map((article, i) => (
             <li
-              key={image}
+              key={article.slug}
               aria-roledescription="slide"
               aria-label={`${i + 1} of ${slides.length}`}
               aria-hidden={i !== active}
@@ -46,7 +43,7 @@ export function ArticlesCarousel() {
                 aria-label={article.title}
               >
                 <Image
-                  src={`/images/pages/${image}.png`}
+                  src={article.image.src}
                   alt=""
                   width={1024}
                   height={576}
@@ -59,7 +56,7 @@ export function ArticlesCarousel() {
                   <h2 className="text-[clamp(22px,1.85vw,32px)] font-semibold leading-[1.15] tracking-[-0.025em] text-ink">
                     {article.title}
                   </h2>
-                  <ArticleMeta readTime={article.readTime} posted={article.posted} />
+                  <ArticleMeta readTime={article.readTime} posted={article.posted} dateTime={article.published} />
                 </div>
                 <Button
                   href={`/articles/${article.slug}`}

@@ -1,12 +1,10 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useId, useMemo, useState } from "react";
 import { faqGroups } from "@/lib/content";
 
 function Item({ n, q, a, open, onToggle }: { n: number; q: string; a: string; open: boolean; onToggle: () => void }) {
   const id = useId();
-  const reduce = useReducedMotion();
   return (
     <li className={`border-b border-white/10 transition-colors ${open ? "bg-white/[0.04]" : "hover:bg-white/[0.025]"}`}>
       <h3 className="m-0">
@@ -27,21 +25,17 @@ function Item({ n, q, a, open, onToggle }: { n: number; q: string; a: string; op
           </span>
         </button>
       </h3>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            id={id}
-            role="region"
-            initial={reduce ? false : { height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={reduce ? { opacity: 0 } : { height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
-          >
-            <p className="max-w-[760px] pb-6 pl-[44px] pr-12 text-[16px] leading-[26px] text-muted md:pb-8 md:pl-[76px] md:text-[17px] md:leading-[28px]">{a}</p>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* Answers stay in the HTML when closed so search and AI crawlers can read every one. */}
+      <div
+        id={id}
+        role="region"
+        inert={!open}
+        className={`grid transition-[grid-template-rows,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none ${open ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+      >
+        <div className="overflow-hidden">
+          <p className="max-w-[760px] pb-6 pl-[44px] pr-12 text-[16px] leading-[26px] text-muted md:pb-8 md:pl-[76px] md:text-[17px] md:leading-[28px]">{a}</p>
+        </div>
+      </div>
     </li>
   );
 }

@@ -41,7 +41,7 @@ const sources: ArticleSource[] = [
       "Pick a goal time, run every 1 km at the same steady pace, and protect your legs for the back half. Here is how to turn one finish time into 16 splits you can actually hold.",
     category: "Guides",
     published: "2026-11-06",
-    image: { src: "/images/pages/carousel-2.png", alt: "Hyrox athlete holding up a 1:31:57 finish time at Hyrox Dublin" },
+    image: { src: "/images/polaroid-sled.png", alt: "Athlete driving a sled across a dark gym floor" },
     keywords: ["Hyrox pacing", "Hyrox pace strategy", "Hyrox splits", "Hyrox goal time"],
     intro: [
       "The short answer: decide on a realistic goal time, divide it across the 8 runs, the 8 stations and the roxzone, and run the first kilometre no faster than the last one should be. Even pacing beats a fast start in almost every Hyrox race.",
@@ -527,7 +527,7 @@ const sources: ArticleSource[] = [
       "Choose the Open or Doubles division, train three to four days a week for 8 to 12 weeks, practise every station after a run, and start the race slower than you think. Here is what to expect.",
     category: "Articles",
     published: "2026-10-06",
-    image: { src: "/images/pages/article-side.png", alt: "Hyrox athlete walking through the event hall" },
+    image: { src: "/images/pages/carousel-1.png", alt: "Athlete in a gym with kettlebells and wall balls behind him" },
     keywords: ["first Hyrox", "Hyrox for beginners", "Hyrox training plan", "Hyrox divisions"],
     intro: [
       "Anyone who can run a slow 5 km and handle a gym session can finish a Hyrox race. Choose a division that suits you, give yourself 8 to 12 weeks, and practise the format, not just your fitness.",

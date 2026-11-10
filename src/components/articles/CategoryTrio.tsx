@@ -15,6 +15,7 @@ const categories = [
     image: "category-articles",
     box: { x: 141, y: 1521, w: 348, h: 268 },
     title: "Running - Indoors or outdoors?",
+    article: "/articles/running-indoors-or-outdoors-for-hyrox",
     titleY: 1852,
     timeY: 1834.5,
     timeRight: 489,
@@ -29,6 +30,7 @@ const categories = [
     image: "category-blogs",
     box: { x: 690, y: 1521, w: 348, h: 191 },
     title: "Sled-push was tough until?",
+    article: "/articles/sled-push-technique",
     titleY: 1770,
     timeY: 1753.5,
     timeRight: 1038,
@@ -43,6 +45,7 @@ const categories = [
     image: "category-guides",
     box: { x: 1240, y: 1521, w: 348, h: 268 },
     title: "How to do SkiErg efficiently",
+    article: "/articles/how-to-do-skierg-efficiently",
     titleY: 1852,
     timeY: 1834.5,
     timeRight: 1588,
@@ -115,7 +118,7 @@ export function CategoryTrio() {
             </h2>
 
             <Link
-              href={c.href}
+              href={c.article}
               className="absolute block"
               style={{ left: d(c.box.x), top: d(c.box.y - ORIGIN_Y), width: d(c.box.w), height: d(c.box.h) }}
               aria-label={`${c.heading}: ${c.title}`}

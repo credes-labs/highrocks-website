@@ -7,13 +7,43 @@ import { SandbagCard, SkiErgCard, WallBallCard } from "@/components/features/Dri
 import { PaceCalculator } from "@/components/features/PaceCalculator";
 import "./features.css";
 import { d } from "@/lib/design";
+import { APP_ID, ORG_ID, WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
+import { JsonLd } from "@/components/seo/JsonLd";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Hyrox Pace Calculator, Drill Library & Race Simulation",
   description:
-    "Plan your Hyrox race with a pace calculator for all 16 segments, train every station with goal-timed drills, and rehearse with a full race simulation.",
-  alternates: { canonical: "/features" },
-};
+    "Free Hyrox pace calculator: turn a goal finish time into splits for all 8 runs and 8 stations. Plus goal-timed station drills and a full Hyrox race simulation.",
+  path: "/features",
+  keywords: ["Hyrox pace calculator", "Hyrox splits", "Hyrox drills", "Hyrox race simulation", "Hyrox goal time"],
+});
+
+const jsonLd = [
+  {
+    "@type": "WebPage",
+    "@id": absoluteUrl("/features#webpage"),
+    url: absoluteUrl("/features"),
+    name: "Hyrox Pace Calculator, Drill Library & Race Simulation",
+    isPartOf: { "@id": WEBSITE_ID },
+    about: { "@id": APP_ID },
+    breadcrumb: breadcrumbLd([{ name: "Features", path: "/features" }]),
+  },
+  {
+    "@type": "WebApplication",
+    "@id": absoluteUrl("/features#pace-calculator"),
+    name: "HighRocks Hyrox Pace Calculator",
+    url: absoluteUrl("/features#pace-calculator"),
+    applicationCategory: "SportsApplication",
+    operatingSystem: "Any (web browser)",
+    browserRequirements: "Requires JavaScript",
+    isAccessibleForFree: true,
+    offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
+    description:
+      "Enter a Hyrox goal finish time and get a target split for each of the 8 × 1 km runs, the 8 stations and the roxzone.",
+    publisher: { "@id": ORG_ID },
+  },
+];
 
 const DIAL_ORIGIN = 1044; // canvas y where the dial block starts
 const DIAL_STAGE_HEIGHT = 2020;
@@ -110,6 +140,7 @@ export default function FeaturesPage() {
         <PaceCalculator />
       </main>
       <Footer />
+      <JsonLd data={jsonLd} />
     </>
   );
 }

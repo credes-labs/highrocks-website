@@ -5,13 +5,38 @@ import { ArticleBrowser } from "@/components/articles/ArticleBrowser";
 import { JoinCta } from "@/components/sections/JoinCta";
 import { Footer } from "@/components/sections/Footer";
 import { gutter } from "@/lib/design";
+import { articles } from "@/lib/content";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Hyrox Training Articles, Blogs & Guides",
   description:
-    "Hyrox training articles, race guides and athlete stories: pacing, station technique, nutrition and recovery.",
-  alternates: { canonical: "/articles" },
-};
+    "Hyrox training articles and race guides: pacing, the 8 stations, SkiErg and sled push technique, wall ball strategy, running and your first race.",
+  path: "/articles",
+  keywords: ["Hyrox articles", "Hyrox guides", "Hyrox training tips", "Hyrox technique"],
+});
+
+const jsonLd = [
+  {
+    "@type": "CollectionPage",
+    "@id": absoluteUrl("/articles#webpage"),
+    url: absoluteUrl("/articles"),
+    name: "Hyrox articles & guides",
+    isPartOf: { "@id": WEBSITE_ID },
+    breadcrumb: breadcrumbLd([{ name: "Articles", path: "/articles" }]),
+    mainEntity: {
+      "@type": "ItemList",
+      itemListElement: articles.map((a, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        url: absoluteUrl(`/articles/${a.slug}`),
+        name: a.title,
+      })),
+    },
+  },
+];
 
 export default function ArticlesPage() {
   return (
@@ -37,6 +62,7 @@ export default function ArticlesPage() {
         </div>
       </main>
       <Footer overlap={176} />
+      <JsonLd data={jsonLd} />
     </>
   );
 }

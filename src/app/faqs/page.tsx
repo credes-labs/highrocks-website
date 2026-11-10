@@ -6,22 +6,30 @@ import { FaqBrowser } from "@/components/faq/FaqBrowser";
 import { gutter } from "@/lib/design";
 import { Reveal } from "@/components/motion/Reveal";
 import { faqGroups } from "@/lib/content";
+import { WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
+import { JsonLd } from "@/components/seo/JsonLd";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Hyrox FAQs: Race Format, Stations, Pacing & Training",
   description:
     "Answers to common Hyrox questions: what the race is, the 8 stations and divisions, good finish times, how to pace it, and how the HighRocks app helps you train.",
-  alternates: { canonical: "/faqs" },
-};
+  path: "/faqs",
+  keywords: ["Hyrox FAQ", "what is Hyrox", "Hyrox stations", "good Hyrox time", "Hyrox divisions"],
+});
 
 export default function FaqsPage() {
-  const jsonLd = {
-    "@context": "https://schema.org",
+  const jsonLd = [
+    breadcrumbLd([{ name: "FAQs", path: "/faqs" }]),
+    {
     "@type": "FAQPage",
+    "@id": absoluteUrl("/faqs#faq"),
+    isPartOf: { "@id": WEBSITE_ID },
     mainEntity: faqGroups.flatMap((g) =>
       g.items.map((i) => ({ "@type": "Question", name: i.q, acceptedAnswer: { "@type": "Answer", text: i.a } })),
     ),
-  };
+    },
+  ];
   return (
     <>
       <Navbar />
@@ -43,7 +51,7 @@ export default function FaqsPage() {
         </div>
       </main>
       <Footer overlap={176} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <JsonLd data={jsonLd} />
     </>
   );
 }

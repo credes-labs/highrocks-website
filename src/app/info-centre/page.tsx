@@ -6,13 +6,28 @@ import { LatestRows } from "@/components/articles/LatestRows";
 import { AllStories } from "@/components/articles/AllStories";
 import { JoinCta } from "@/components/sections/JoinCta";
 import { Footer } from "@/components/sections/Footer";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Hyrox Info Centre: Stories, Guides & Training Advice",
   description:
-    "Hyrox stories, guides and training advice from the HighRocks Info Centre: race prep, station technique, pacing, nutrition and recovery.",
-  alternates: { canonical: "/info-centre" },
-};
+    "Hyrox guides and training advice from the HighRocks Info Centre: race pacing, station technique, running, transitions and your first Hyrox race.",
+  path: "/info-centre",
+  keywords: ["Hyrox guides", "Hyrox training advice", "Hyrox tips", "Hyrox blog"],
+});
+
+const jsonLd = [
+  {
+    "@type": "CollectionPage",
+    "@id": absoluteUrl("/info-centre#webpage"),
+    url: absoluteUrl("/info-centre"),
+    name: "Hyrox Info Centre",
+    isPartOf: { "@id": WEBSITE_ID },
+    breadcrumb: breadcrumbLd([{ name: "Info Centre", path: "/info-centre" }]),
+  },
+];
 
 export default function InfoCentrePage() {
   return (
@@ -30,6 +45,7 @@ export default function InfoCentrePage() {
         </div>
       </main>
       <Footer overlap={176} />
+      <JsonLd data={jsonLd} />
     </>
   );
 }
