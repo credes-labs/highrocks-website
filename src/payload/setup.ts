@@ -7,9 +7,11 @@ import { getPayload, type Migration } from "payload";
 import config from "../payload.config";
 import { migrations } from "../migrations";
 import { seed } from "./seed";
+import { convertMediaToWebp } from "./media-webp";
 
 const payload = await getPayload({ config });
 // Generated migrations are typed against the SQLite adapter; the generic signature takes them as is.
 await payload.db.migrate({ migrations: migrations as unknown as Migration[] });
 if (process.env.PAYLOAD_SEED !== "false") await seed(payload);
+await convertMediaToWebp(payload);
 process.exit(0);

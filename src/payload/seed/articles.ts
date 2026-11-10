@@ -11,7 +11,7 @@ export const seedArticles: SeedArticle[] = [
       "Pick a goal time, run every 1 km at the same steady pace, and protect your legs for the back half. Here is how to turn one finish time into 16 splits you can actually hold.",
     category: "Guides",
     published: "2026-11-06",
-    image: { src: "/images/polaroid-sled.png", alt: "Athlete driving a sled across a dark gym floor" },
+    image: { src: "/images/polaroid-sled.webp", alt: "Athlete driving a sled across a dark gym floor" },
     keywords: ["Hyrox pacing", "Hyrox pace strategy", "Hyrox splits", "Hyrox goal time"],
     intro: [
       "The short answer: decide on a realistic goal time, divide it across the 8 runs, the 8 stations and the roxzone, and run the first kilometre no faster than the last one should be. Even pacing beats a fast start in almost every Hyrox race.",
@@ -66,7 +66,7 @@ export const seedArticles: SeedArticle[] = [
       "A Hyrox race is 8 × 1 km runs, each followed by a station: SkiErg, sled push, sled pull, burpee broad jumps, rowing, farmers carry, sandbag lunges and wall balls. Here is what each one asks of you.",
     category: "Guides",
     published: "2026-11-03",
-    image: { src: "/images/pages/article-band-1.png", alt: "Hyrox athlete driving a sled push in front of the race clock" },
+    image: { src: "/images/pages/article-band-1.webp", alt: "Hyrox athlete driving a sled push in front of the race clock" },
     keywords: ["Hyrox stations", "Hyrox workouts", "Hyrox weights", "Hyrox format"],
     intro: [
       "Every Hyrox race follows the same format: run 1 km, complete a station, and repeat eight times. That adds up to 8 km of running and 8 functional workouts, always in the same order, at every Hyrox event in the world.",
@@ -128,7 +128,7 @@ export const seedArticles: SeedArticle[] = [
       "Use your hips and lats, not your arms: hinge, pull the handles down past your hips, and hold a stroke rate you can sustain. Here is the technique and pacing for the 1,000 m SkiErg.",
     category: "Guides",
     published: "2026-10-30",
-    image: { src: "/images/pages/category-guides.png", alt: "Athlete pulling a SkiErg in a dark training hall" },
+    image: { src: "/images/pages/category-guides.webp", alt: "Athlete pulling a SkiErg in a dark training hall" },
     keywords: ["SkiErg technique", "Hyrox SkiErg", "SkiErg pacing", "SkiErg 1000m"],
     intro: [
       "The SkiErg is the first station in every Hyrox race: 1,000 m straight after your first 1 km run. Done well, it costs you very little. Done with your arms alone, it leaves your shoulders and grip tired for the sled push and sled pull that come next.",
@@ -184,7 +184,7 @@ export const seedArticles: SeedArticle[] = [
       "Get low, lock your arms, and take short fast steps without stopping. These three changes make the Hyrox sled push faster and stop the sled from stalling.",
     category: "Blogs",
     published: "2026-10-27",
-    image: { src: "/images/pages/category-blogs.png", alt: "Athlete driving a sled from above on a dark textured floor" },
+    image: { src: "/images/pages/category-blogs.webp", alt: "Athlete driving a sled from above on a dark textured floor" },
     keywords: ["sled push technique", "Hyrox sled push", "sled push tips", "Hyrox station 2"],
     intro: [
       "The sled push is the station most people fear: 50 m in four 12.5 m lengths, with a heavy sled on a carpeted track. The fix is not more strength. It is body angle, arm position and footwork.",
@@ -239,7 +239,7 @@ export const seedArticles: SeedArticle[] = [
       "Do most of your running outdoors for volume, and add indoor or treadmill sessions to rehearse race conditions: flat surfaces, tight turns and running straight after a station.",
     category: "Articles",
     published: "2026-10-23",
-    image: { src: "/images/pages/category-articles.png", alt: "Runner on a mountain road under a stormy sky" },
+    image: { src: "/images/pages/category-articles.webp", alt: "Runner on a mountain road under a stormy sky" },
     keywords: ["Hyrox running", "treadmill vs outdoor running", "Hyrox running training", "compromised running"],
     intro: [
       "Hyrox is run indoors, usually on a flat exhibition hall floor with tight turns and a lap around the stations. So should you train indoors too? The answer is both: build volume outdoors, then rehearse the race indoors.",
@@ -293,7 +293,7 @@ export const seedArticles: SeedArticle[] = [
       "For most people, easy jogging builds endurance fastest because you can do the most of it. Brisk walking works for beginners and recovery days, and faster running sharpens the engine once a base is in place.",
     category: "Articles",
     published: "2026-10-20",
-    image: { src: "/images/polaroid-run.png", alt: "Runner on an indoor track seen from above" },
+    image: { src: "/images/polaroid-run.webp", alt: "Runner on an indoor track seen from above" },
     keywords: ["endurance training", "zone 2 running", "walking vs running", "Hyrox endurance"],
     intro: [
       "Endurance improves with the total amount of steady aerobic work you can do and recover from. That is why the answer depends on where you start: the best option is the one you can repeat most often without breaking down.",
@@ -346,7 +346,7 @@ export const seedArticles: SeedArticle[] = [
       "Yes. Cycling adds aerobic volume with almost no impact, which helps you recover and build your engine. It cannot replace running, but it is a strong second cardio session.",
     category: "Blogs",
     published: "2026-10-16",
-    image: { src: "/images/pages/latest-cycling.png", alt: "Cyclist silhouetted on a road bike under a cloudy sky" },
+    image: { src: "/images/pages/latest-cycling.webp", alt: "Cyclist silhouetted on a road bike under a cloudy sky" },
     keywords: ["cycling for Hyrox", "cross training Hyrox", "low impact cardio", "Hyrox conditioning"],
     intro: [
       "Cycling does not appear in a Hyrox race, so why do so many Hyrox athletes ride? Because it builds aerobic fitness without the pounding of running, which lets you train more without getting hurt.",
@@ -396,7 +396,7 @@ export const seedArticles: SeedArticle[] = [
       "Drive with your legs, keep the stroke rate moderate, and row at a pace that lets your breathing settle. The Hyrox row comes at station 5, right before the farmers carry, lunges and wall balls.",
     category: "Guides",
     published: "2026-10-13",
-    image: { src: "/images/pages/latest-rowing.png", alt: "Athlete on a rowing machine in a dark gym" },
+    image: { src: "/images/pages/latest-rowing.webp", alt: "Athlete on a rowing machine in a dark gym" },
     keywords: ["Hyrox rowing", "rowing technique", "1000m row pace", "Hyrox station 5"],
     intro: [
       "The row is station 5 of 8: 1,000 m on a rowing machine after the burpee broad jumps and your fifth run. It is the one station where you sit down, which makes it the best place in the race to control your breathing.",
@@ -447,7 +447,7 @@ export const seedArticles: SeedArticle[] = [
       "Plan your sets before you start, rest for short fixed breaks, and keep every squat below parallel so no reps are cancelled. Here are set plans for 100 wall balls at the end of a Hyrox race.",
     category: "Guides",
     published: "2026-10-09",
-    image: { src: "/images/polaroid-wallballs.png", alt: "Athlete throwing a wall ball in a dark gym" },
+    image: { src: "/images/polaroid-wallballs.webp", alt: "Athlete throwing a wall ball in a dark gym" },
     keywords: ["Hyrox wall balls", "wall ball strategy", "100 wall balls", "Hyrox station 8"],
     intro: [
       "Wall balls are the last station of every Hyrox race: 100 reps, with the finish line just beyond. Your legs are tired, your heart rate is high and a no-rep costs you time. A set plan made before race day is the difference between finishing strong and standing at the target.",
@@ -500,7 +500,7 @@ export const seedArticles: SeedArticle[] = [
       "Choose the Open or Doubles division, train three to four days a week for 8 to 12 weeks, practise every station after a run, and start the race slower than you think. Here is what to expect.",
     category: "Articles",
     published: "2026-10-06",
-    image: { src: "/images/pages/carousel-1.png", alt: "Athlete in a gym with kettlebells and wall balls behind him" },
+    image: { src: "/images/pages/carousel-1.webp", alt: "Athlete in a gym with kettlebells and wall balls behind him" },
     keywords: ["first Hyrox", "Hyrox for beginners", "Hyrox training plan", "Hyrox divisions"],
     intro: [
       "Anyone who can run a slow 5 km and handle a gym session can finish a Hyrox race. Choose a division that suits you, give yourself 8 to 12 weeks, and practise the format, not just your fitness.",
@@ -557,7 +557,7 @@ export const seedArticles: SeedArticle[] = [
       "The roxzone is the transition area between the run course and each station, and its time counts toward your result. Know the layout, keep moving, and use it to reset your breathing, not to stop.",
     category: "Blogs",
     published: "2026-10-02",
-    image: { src: "/images/pages/features-hero.png", alt: "Athlete running on a marked indoor track lane" },
+    image: { src: "/images/pages/features-hero.webp", alt: "Athlete running on a marked indoor track lane" },
     keywords: ["Hyrox roxzone", "Hyrox transitions", "roxzone time", "Hyrox race tips"],
     intro: [
       "The roxzone is the area you pass through between the running course and every station. You enter it 16 times in a race, and the clock never stops. For many athletes, it adds up to several minutes of their finish time.",
@@ -607,7 +607,7 @@ export const seedArticles: SeedArticle[] = [
       "The second half of a Hyrox race decides your result. Slow down slightly early, keep a steady lunge rhythm with your back knee touching every rep, and save something for the wall balls.",
     category: "Guides",
     published: "2026-09-29",
-    image: { src: "/images/pages/drill-sandbag.png", alt: "Athlete lunging with a sandbag across the shoulders" },
+    image: { src: "/images/pages/drill-sandbag.webp", alt: "Athlete lunging with a sandbag across the shoulders" },
     keywords: ["Hyrox sandbag lunges", "Hyrox back half", "Hyrox station 7", "lunge technique"],
     intro: [
       "Stations 5 to 8, the row, farmers carry, sandbag lunges and wall balls, are where Hyrox races are decided. Fatigue builds, runs slow down and small mistakes cost minutes.",

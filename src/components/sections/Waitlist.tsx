@@ -30,7 +30,7 @@ export function Waitlist() {
         }}
       >
         <Image
-          src="/images/waitlist-phone.png"
+          src="/images/waitlist-phone.webp"
           alt=""
           width={1024}
           height={1536}
@@ -50,7 +50,7 @@ export function Waitlist() {
         aria-hidden
       >
         <Image
-          src="/images/waitlist-phone.png"
+          src="/images/waitlist-phone.webp"
           alt=""
           width={1024}
           height={1536}

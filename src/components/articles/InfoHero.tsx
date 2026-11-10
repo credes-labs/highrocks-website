@@ -7,17 +7,18 @@ export function InfoHero() {
     <section className="relative overflow-hidden" style={{ minHeight: "max(440px, calc(1044 * var(--d)))" }}>
       <div className="absolute inset-x-0 top-0 opacity-[0.6]" style={{ height: d(999) }}>
         <Image
-          src="/images/pages/info-hero.png"
+          src="/images/pages/info-hero.webp"
           alt=""
           width={1024}
           height={684}
-          priority
-          unoptimized
+          fetchPriority="high"
+          loading="eager"
+          sizes="100vw"
           className="size-full object-cover object-bottom"
         />
       </div>
       <Image
-        src="/images/hero-fade.png"
+        src="/images/hero-fade.webp"
         alt=""
         width={1024}
         height={211}

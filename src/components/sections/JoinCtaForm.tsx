@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import { Honeypot, Turnstile } from "@/components/ui/Turnstile";
 import { Svg } from "@/components/ui/Svg";
 
 type Status = "idle" | "submitting" | "success" | "error";
@@ -75,7 +77,9 @@ export function JoinCtaForm({ className = "" }: { className?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className={`flex flex-col gap-[35px] ${className}`}>
+    <form onSubmit={onSubmit} className={`relative flex flex-col gap-[35px] ${className}`}>
+      <input type="hidden" name="source" value="join" />
+      <Honeypot />
       <div className="flex flex-col gap-[26px]">
         <Field name="name" title="Your Name" placeholder="Type your name" autoComplete="name" required />
         <Field name="phone" title="Phone Number" placeholder="+91 97..." type="tel" autoComplete="tel" />
@@ -105,6 +109,8 @@ export function JoinCtaForm({ className = "" }: { className?: string }) {
         </div>
       </div>
 
+      <Turnstile />
+
       <button
         type="submit"
         disabled={status === "submitting"}
@@ -123,9 +129,13 @@ export function JoinCtaForm({ className = "" }: { className?: string }) {
 
       <p className="text-center text-sm font-light text-[#f8f8f8]">
         By joining, you agree to our{" "}
-        <a href="#terms" className="underline underline-offset-2">
+        <Link href="/terms" className="underline underline-offset-2">
           Terms &amp; Conditions
-        </a>
+        </Link>{" "}
+        and{" "}
+        <Link href="/privacy" className="underline underline-offset-2">
+          Privacy Policy
+        </Link>
       </p>
       <p className="text-center font-grotesk text-[16.629px] uppercase leading-[25px] tracking-[0.15em] text-[#f8f8f8]">
         We&apos;ll send you early access updates.

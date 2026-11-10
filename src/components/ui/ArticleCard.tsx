@@ -40,7 +40,7 @@ export function ArticleCard({
         <ArticleMeta readTime={article.readTime} posted={article.posted} dateTime={article.published} />
         <p className="copy">{article.excerpt}</p>
         <Button href={`/articles/${article.slug}`} className="h-[47px] w-[173px]">
-          Read More
+          Read More<span className="sr-only">: {article.title}</span>
         </Button>
       </div>
     </article>

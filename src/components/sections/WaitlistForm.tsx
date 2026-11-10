@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useState, type FormEvent } from "react";
+import { Honeypot, Turnstile } from "@/components/ui/Turnstile";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -45,7 +47,9 @@ export function WaitlistForm({ className = "" }: { className?: string }) {
   }
 
   return (
-    <form onSubmit={onSubmit} className={`flex flex-col gap-2.5 ${className}`} aria-describedby="waitlist-status">
+    <form onSubmit={onSubmit} className={`relative flex flex-col gap-2.5 ${className}`} aria-describedby="waitlist-status">
+      <input type="hidden" name="source" value="home" />
+      <Honeypot />
       <label className="sr-only" htmlFor="wl-name">
         Name
       </label>
@@ -76,6 +80,8 @@ export function WaitlistForm({ className = "" }: { className?: string }) {
         </span>
       </div>
 
+      <Turnstile />
+
       <button
         type="submit"
         disabled={status === "submitting"}
@@ -90,9 +96,13 @@ export function WaitlistForm({ className = "" }: { className?: string }) {
 
       <p className="mt-3 text-[12px] text-[#6b7280]">
         By joining, you agree to our{" "}
-        <a href="#terms" className="text-[#9aa3b2] underline underline-offset-2 hover:text-ink">
+        <Link href="/terms" className="text-[#9aa3b2] underline underline-offset-2 hover:text-ink">
           Terms
-        </a>
+        </Link>{" "}
+        and{" "}
+        <Link href="/privacy" className="text-[#9aa3b2] underline underline-offset-2 hover:text-ink">
+          Privacy Policy
+        </Link>
         .
       </p>
     </form>

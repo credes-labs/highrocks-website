@@ -62,7 +62,7 @@ export function ArticlesCarousel({ articles }: { articles: Article[] }) {
                   tabIndex={i === active ? 0 : -1}
                   className="h-[47px] w-[173px]"
                 >
-                  Read More
+                  Read More<span className="sr-only">: {article.title}</span>
                 </Button>
               </div>
             </li>

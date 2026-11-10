@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import sharp from "sharp";
 import { LOGOMARK_PATHS } from "@/lib/logomark";
 
 export const ogSize = { width: 1200, height: 630 };
@@ -17,9 +18,9 @@ async function publicImage(src: string) {
   const file = src.startsWith(MEDIA_PREFIX)
     ? join(process.cwd(), "media", decodeURIComponent(src.slice(MEDIA_PREFIX.length).split("?")[0]))
     : join(process.cwd(), "public", src);
-  const buf = await readFile(file);
-  const type = /.jpe?g$/i.test(file) ? "jpeg" : /.webp$/i.test(file) ? "webp" : "png";
-  return `data:image/${type};base64,${buf.toString("base64")}`;
+  // Share cards are 1200 px wide; the renderer wants PNG/JPEG, so resize and re-encode here.
+  const png = await sharp(await readFile(file)).resize({ width: 1200, withoutEnlargement: true }).png().toBuffer();
+  return `data:image/png;base64,${png.toString("base64")}`;
 }
 
 type OgCard = {
@@ -32,7 +33,7 @@ type OgCard = {
 };
 
 /** Shared branded share card: darkened photo, logo, kicker and title. */
-export async function ogImage({ kicker, title, subtitle, photo = "/images/hero-bg.png" }: OgCard) {
+export async function ogImage({ kicker, title, subtitle, photo = "/images/hero-bg.webp" }: OgCard) {
   const bg = await publicImage(photo);
   const titleSize = title.length > 60 ? 58 : title.length > 40 ? 68 : 80;
   return new ImageResponse(

@@ -74,12 +74,13 @@ export default function FeaturesPage() {
         {/* Hero */}
         <section className="features-hero relative overflow-hidden" style={{ minHeight: "max(560px, calc(1044 * var(--d)))" }}>
           <Image
-            src="/images/pages/features-hero.png"
+            src="/images/pages/features-hero.webp"
             alt=""
             width={1536}
             height={1024}
-            priority
-            unoptimized
+            fetchPriority="high"
+            loading="eager"
+            sizes="100vw"
             className="absolute left-[-0.28%] top-[-0.02%] h-[110.33%] w-[100.02%] max-w-none object-cover"
           />
           <div className="features-hero-fade" aria-hidden />

@@ -11,7 +11,7 @@ export function JoinCta() {
       style={{ minHeight: d(864) }}
     >
       <div className="relative flex flex-col justify-center overflow-hidden px-5 py-16 lg:px-0 lg:py-0 lg:pl-[calc(88*var(--d))]">
-        <Image src="/images/polaroid-run.png" alt="" fill sizes="50vw" className="object-cover opacity-[0.23]" />
+        <Image src="/images/polaroid-run.webp" alt="" fill sizes="50vw" className="object-cover opacity-[0.23]" />
         <div className="relative">
           <h2 className="text-[clamp(40px,3.7vw,64px)] font-normal capitalize leading-[1.078] tracking-[-0.0375em]">
             <span className="block text-[#f1f1f1]">Be the First.</span>

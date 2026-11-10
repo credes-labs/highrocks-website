@@ -90,7 +90,7 @@ function Section({ section }: { section: Article["sections"][number] }) {
 function Band({ src, w, h }: { src: string; w: number; h: number }) {
   return (
     <div className="relative aspect-[1728/979] w-full overflow-hidden">
-      <Image src={src} alt="" width={w} height={h} unoptimized className="absolute inset-0 size-full object-cover" />
+      <Image src={src} alt="" width={w} height={h} sizes="100vw" className="absolute inset-0 size-full object-cover" />
     </div>
   );
 }
@@ -116,7 +116,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
               alt={article.image.alt}
               width={1536}
               height={1024}
-              priority
+              preload
               sizes="(min-width: 1024px) 36vw, 100vw"
               className="absolute inset-0 size-full object-cover"
             />
@@ -141,7 +141,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
 
           <div className="relative mx-5 mb-10 aspect-[425/411] lg:absolute lg:left-[calc(1303*var(--d))] lg:top-[calc(568*var(--d))] lg:m-0 lg:w-[calc(425*var(--d))]">
             <Image
-              src="/images/pages/article-side.png"
+              src="/images/pages/article-side.webp"
               alt=""
               width={800}
               height={549}
@@ -152,7 +152,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
         </section>
 
         <div className="lg:mt-[calc(125*var(--d))]">
-          <Band src="/images/pages/article-band-1.png" w={900} h={900} />
+          <Band src="/images/pages/article-band-1.webp" w={900} h={900} />
         </div>
 
         {/* Long-form body with pull quote */}
@@ -173,7 +173,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
         <section className="mx-auto mt-12 grid max-w-[1728px] gap-6 lg:mt-[calc(67*var(--d))] lg:grid-cols-[462fr_1223fr] lg:gap-[calc(43*var(--d))]">
           <div className="relative aspect-[462/534] w-full overflow-hidden">
             <Image
-              src="/images/pages/article-body-1.png"
+              src="/images/pages/article-body-1.webp"
               alt=""
               width={1536}
               height={1024}
@@ -183,7 +183,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
           </div>
           <div className="relative aspect-[1223/534] w-full overflow-hidden">
             <Image
-              src="/images/pages/article-body-2.png"
+              src="/images/pages/article-body-2.webp"
               alt=""
               width={1200}
               height={801}
@@ -210,7 +210,7 @@ export default async function ArticlePage({ params }: PageProps<"/articles/[slug
         </section>
 
         <div className="mt-12 lg:mt-[calc(66*var(--d))]">
-          <Band src="/images/pages/article-band-2.png" w={1500} h={1000} />
+          <Band src="/images/pages/article-band-2.webp" w={1500} h={1000} />
         </div>
 
         </article>

@@ -1,29 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Archivo, Courier_Prime, Space_Grotesk } from "next/font/google";
 import { SITE_DESCRIPTION, SITE_KEYWORDS, SITE_NAME, SITE_TAGLINE, SITE_URL } from "@/lib/site";
 import { ORG_ID, WEBSITE_ID } from "@/lib/seo";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PreviewBar } from "@/components/PreviewBar";
+import { fontVars } from "@/lib/fonts";
 import "./globals.css";
-
-// Variable Archivo with the width axis: condensed, heavy display headings + regular body text.
-const archivo = Archivo({
-  variable: "--font-archivo",
-  subsets: ["latin"],
-  axes: ["wdth"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-// Nimbus Mono PS (used in the Figma file) is a Courier clone.
-const courierPrime = Courier_Prime({
-  variable: "--font-courier-prime",
-  subsets: ["latin"],
-  weight: "400",
-});
 
 const verification = {
   google: process.env.GOOGLE_SITE_VERIFICATION,
@@ -97,11 +78,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${archivo.variable} ${spaceGrotesk.variable} ${courierPrime.variable} antialiased`}
+      className={`${fontVars} antialiased`}
     >
       <body className="min-h-screen">
         {children}
         <JsonLd data={siteLd} />
+        <PreviewBar />
       </body>
     </html>
   );

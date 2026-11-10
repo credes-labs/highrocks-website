@@ -2,6 +2,7 @@ import path from "node:path";
 import type { Payload } from "payload";
 import { seedArticles } from "./articles";
 import { faqGroups, homeFaqs } from "./faqs";
+import { legalPages } from "./legal";
 
 /** Home-page questions and the FAQ group each one belongs to. */
 const HOME_FAQ_GROUP = ["hyrox", "pacing", "app"] as const;
@@ -11,20 +12,29 @@ const SKIP = new Set(["What is Hyrox?"]);
 const ctx = { disableRevalidate: true };
 
 /**
- * Fills an empty database with the site's starting content: FAQ categories and questions,
- * articles (with their photos uploaded to Media) and the Info Centre highlights.
- * Safe to call on every boot; it does nothing once any FAQ or article exists.
+ * Fills empty collections with the site's starting content. Each part runs only while its
+ * collection is empty, so it is safe on every boot and fills in parts added later.
  */
 export async function seed(payload: Payload) {
-  const [faqs, articles] = await Promise.all([
-    payload.count({ collection: "faqs" }),
-    payload.count({ collection: "articles" }),
-  ]);
-  if (faqs.totalDocs > 0 || articles.totalDocs > 0) return;
+  const empty = async (collection: "faqs" | "articles" | "legal-pages") =>
+    (await payload.count({ collection })).totalDocs === 0;
+  if (await empty("faqs")) await seedFaqs(payload);
+  if (await empty("articles")) await seedArticlesAndInfoCentre(payload);
+  if (await empty("legal-pages")) await seedLegal(payload);
+}
 
-  payload.logger.info("Seeding HighRocks content…");
+async function seedLegal(payload: Payload) {
+  for (const page of legalPages) {
+    await payload.create({
+      collection: "legal-pages",
+      data: { ...page, lastUpdated: new Date("2026-11-11").toISOString() },
+      context: ctx,
+    });
+  }
+  payload.logger.info("Seeded legal pages.");
+}
 
-  // FAQs
+async function seedFaqs(payload: Payload) {
   for (const [gi, g] of faqGroups.entries()) {
     const cat = await payload.create({
       collection: "faq-categories",
@@ -48,6 +58,10 @@ export async function seed(payload: Payload) {
     }
   }
 
+  payload.logger.info(`Seeded ${faqGroups.length} FAQ groups.`);
+}
+
+async function seedArticlesAndInfoCentre(payload: Payload) {
   // Photos: upload each public image once.
   const media = new Map<string, number>();
   for (const a of seedArticles) {
@@ -109,5 +123,5 @@ export async function seed(payload: Payload) {
     context: ctx,
   });
 
-  payload.logger.info(`Seeded ${seedArticles.length} articles and ${faqGroups.length} FAQ groups.`);
+  payload.logger.info(`Seeded ${seedArticles.length} articles.`);
 }

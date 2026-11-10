@@ -26,7 +26,7 @@ function TextPanel({ flip, title, href }: { flip: boolean; title: string; href: 
           <Link href={href}>{title}</Link>
         </h3>
         <Button href={href} className="h-[54px] w-[203px]">
-          Read More
+          Read More<span className="sr-only">: {title}</span>
         </Button>
       </div>
     </div>

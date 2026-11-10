@@ -1,9 +1,15 @@
 import * as migration_20261110_175854_initial from './20261110_175854_initial';
+import * as migration_20261110_182749_waitlist_legal from './20261110_182749_waitlist_legal';
 
 export const migrations = [
   {
     up: migration_20261110_175854_initial.up,
     down: migration_20261110_175854_initial.down,
-    name: '20261110_175854_initial'
+    name: '20261110_175854_initial',
+  },
+  {
+    up: migration_20261110_182749_waitlist_legal.up,
+    down: migration_20261110_182749_waitlist_legal.down,
+    name: '20261110_182749_waitlist_legal'
   },
 ];

@@ -9,6 +9,6 @@ export default function Image() {
     kicker: "HighRocks",
     title: "Hyrox articles and guides",
     subtitle: "Pacing, station technique, running and race-day advice.",
-    photo: "/images/pages/category-guides.png",
+    photo: "/images/pages/category-guides.webp",
   });
 }

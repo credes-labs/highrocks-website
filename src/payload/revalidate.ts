@@ -9,6 +9,7 @@ export const TAGS = {
   faqs: "cms:faqs",
   articles: "cms:articles",
   infoCentre: "cms:info-centre",
+  legal: "cms:legal",
 } as const;
 
 /**

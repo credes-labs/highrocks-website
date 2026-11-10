@@ -67,10 +67,12 @@ export interface Config {
   };
   blocks: {};
   collections: {
+    'waitlist-signups': WaitlistSignup;
     articles: Article;
     media: Media;
     faqs: Faq;
     'faq-categories': FaqCategory;
+    'legal-pages': LegalPage;
     users: User;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -79,10 +81,12 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
+    'waitlist-signups': WaitlistSignupsSelect<false> | WaitlistSignupsSelect<true>;
     articles: ArticlesSelect<false> | ArticlesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     faqs: FaqsSelect<false> | FaqsSelect<true>;
     'faq-categories': FaqCategoriesSelect<false> | FaqCategoriesSelect<true>;
+    'legal-pages': LegalPagesSelect<false> | LegalPagesSelect<true>;
     users: UsersSelect<false> | UsersSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -126,6 +130,28 @@ export interface UserAuthOperations {
     email: string;
     password: string;
   };
+}
+/**
+ * Everyone who joined the early-access waitlist. Use “Export CSV” to download the list.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "waitlist-signups".
+ */
+export interface WaitlistSignup {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string | null;
+  birthYear?: number | null;
+  status?: ('waiting' | 'invited' | 'joined' | 'unsubscribed') | null;
+  source?: ('home' | 'join') | null;
+  consentAt?: string | null;
+  /**
+   * Internal notes; never shown to the person.
+   */
+  notes?: string | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * Guides, articles and blogs shown in the Info Centre and on /articles.
@@ -257,6 +283,34 @@ export interface FaqCategory {
   createdAt: string;
 }
 /**
+ * Privacy policy and terms. Have a lawyer review them before launch.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal-pages".
+ */
+export interface LegalPage {
+  id: number;
+  title: string;
+  slug: 'privacy' | 'terms';
+  lastUpdated: string;
+  /**
+   * Plain-language summary shown at the top.
+   */
+  summary?: string | null;
+  sections?:
+    | {
+        heading: string;
+        /**
+         * Separate paragraphs with an empty line. Start a line with “- ” for a bullet.
+         */
+        body: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
  */
@@ -308,6 +362,10 @@ export interface PayloadLockedDocument {
   id: number;
   document?:
     | ({
+        relationTo: 'waitlist-signups';
+        value: number | WaitlistSignup;
+      } | null)
+    | ({
         relationTo: 'articles';
         value: number | Article;
       } | null)
@@ -322,6 +380,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'faq-categories';
         value: number | FaqCategory;
+      } | null)
+    | ({
+        relationTo: 'legal-pages';
+        value: number | LegalPage;
       } | null)
     | ({
         relationTo: 'users';
@@ -368,6 +430,22 @@ export interface PayloadMigration {
   batch?: number | null;
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "waitlist-signups_select".
+ */
+export interface WaitlistSignupsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  birthYear?: T;
+  status?: T;
+  source?: T;
+  consentAt?: T;
+  notes?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -447,6 +525,25 @@ export interface FaqCategoriesSelect<T extends boolean = true> {
   slug?: T;
   blurb?: T;
   order?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "legal-pages_select".
+ */
+export interface LegalPagesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  lastUpdated?: T;
+  summary?: T;
+  sections?:
+    | T
+    | {
+        heading?: T;
+        body?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }

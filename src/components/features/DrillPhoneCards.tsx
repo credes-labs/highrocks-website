@@ -42,11 +42,11 @@ function Shell({ bg, children, label }: { bg: string; children: ReactNode; label
       style={{ width: u(410.84), height: u(740.78) }}
     >
       <Image
-        src={`/images/pages/${bg}.png`}
+        src={`/images/pages/${bg}.webp`}
         alt=""
         width={1024}
         height={768}
-        unoptimized
+        sizes="(min-width: 1024px) 24vw, 80vw"
         className="absolute inset-0 size-full object-cover object-bottom"
       />
       <div
@@ -222,7 +222,7 @@ function Thumb({
     <At x={x} y={y} w={w} h={h} className="bg-white/10" style={{ padding: u(pad) }}>
       <div className="relative aspect-square w-full overflow-hidden border border-white/[0.14] mix-blend-lighten">
         <Image
-          src={`/images/pages/${img}.png`}
+          src={`/images/pages/${img}.webp`}
           alt=""
           width={1024}
           height={1024}

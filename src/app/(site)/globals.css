@@ -187,3 +187,25 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 @media (prefers-reduced-motion: reduce) {
   .story-ball { animation: none; }
 }
+
+/* ---------------------------------------------------------------------------
+   404: a runner lapping the track around the logo.
+   --------------------------------------------------------------------------- */
+.nf-runner {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+  animation: nf-lap 7s linear infinite;
+}
+@keyframes nf-lap {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nf-runner { animation: none; }
+}
+
+/* Looping animations stop while their section is off screen (usePauseOffscreen). */
+[data-offscreen] *,
+[data-offscreen] *::before,
+[data-offscreen] *::after {
+  animation-play-state: paused !important;
+}

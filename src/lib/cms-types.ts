@@ -39,3 +39,13 @@ export type FaqGroup = { id: string; label: string; blurb: string; items: readon
 
 export type InfoCentreTile = { heading: string; title: string; ctaLabel: string; ctaLink: string; article: Article };
 export type InfoCentreContent = { tiles: InfoCentreTile[]; latest: Article[] };
+
+/** A legal page body block: paragraphs and bullet lists, in order. */
+export type LegalBlock = { type: "p"; text: string } | { type: "ul"; items: string[] };
+export type LegalPage = {
+  slug: "privacy" | "terms";
+  title: string;
+  summary: string;
+  lastUpdated: string;
+  sections: { heading: string; id: string; blocks: LegalBlock[] }[];
+};

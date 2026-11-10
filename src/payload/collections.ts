@@ -37,6 +37,10 @@ export const Media: CollectionConfig = {
     staticDir: path.resolve(dirname, "../../media"),
     mimeTypes: ["image/*"],
     focalPoint: true,
+    // Every upload is stored as WebP, at most 2560 px wide; the site resizes further per screen.
+    formatOptions: { format: "webp", options: { quality: 80, alphaQuality: 90, effort: 5 } },
+    resizeOptions: { width: 2560, withoutEnlargement: true },
+    adminThumbnail: ({ doc }) => (typeof doc.url === "string" ? doc.url : null),
   },
   fields: [
     {
@@ -89,6 +93,7 @@ export const Faqs: CollectionConfig = {
   admin: {
     useAsTitle: "question",
     defaultColumns: ["question", "category", "order", "featuredOnHome"],
+    listSearchableFields: ["question", "answer"],
     group: "FAQs",
     description: "Every question on /faqs. Tick “Show on home page” for the three cards on the landing page.",
   },
@@ -121,7 +126,9 @@ export const Articles: CollectionConfig = {
     defaultColumns: ["title", "category", "publishedAt", "_status"],
     group: "Info Centre",
     description: "Guides, articles and blogs shown in the Info Centre and on /articles.",
-    preview: (doc) => (doc?.slug ? `/articles/${doc.slug}` : null),
+    // Opens the article with drafts visible (see src/app/preview/route.ts).
+    preview: (doc) => (doc?.slug ? `/preview?path=${encodeURIComponent(`/articles/${doc.slug}`)}` : null),
+    listSearchableFields: ["title", "excerpt", "slug"],
   },
   defaultSort: "-publishedAt",
   versions: { drafts: true, maxPerDoc: 20 },
@@ -172,7 +179,10 @@ export const Articles: CollectionConfig = {
       name: "sections",
       type: "array",
       minRows: 1,
-      admin: { description: "The body. The first two sections sit above the photo pair, the rest beside the key takeaways." },
+      admin: {
+        description: "The body. The first two sections sit above the photo pair, the rest beside the key takeaways.",
+        components: { RowLabel: "/payload/admin/RowLabel#HeadingRowLabel" },
+      },
       fields: [
         { name: "heading", type: "text", required: true },
         { name: "body", type: "textarea", required: true, admin: { description: PARAGRAPHS_HINT } },
@@ -225,7 +235,10 @@ export const InfoCentre: GlobalConfig = {
       type: "array",
       minRows: 3,
       maxRows: 3,
-      admin: { description: "The three tiles under the hero, left to right." },
+      admin: {
+        description: "The three tiles under the hero, left to right.",
+        components: { RowLabel: "/payload/admin/RowLabel#HeadingRowLabel" },
+      },
       fields: [
         { name: "heading", type: "text", required: true, admin: { description: "e.g. Articles, Blogs, Guides" } },
         { name: "article", type: "relationship", relationTo: "articles", required: true },
@@ -244,4 +257,53 @@ export const InfoCentre: GlobalConfig = {
     },
   ],
   hooks: { afterChange: [revalidateGlobal(TAGS.infoCentre)] },
+};
+
+export const LegalPages: CollectionConfig = {
+  slug: "legal-pages",
+  labels: { singular: "Legal page", plural: "Legal pages" },
+  admin: {
+    useAsTitle: "title",
+    defaultColumns: ["title", "slug", "lastUpdated"],
+    group: "Site",
+    description: "Privacy policy and terms. Have a lawyer review them before launch.",
+    preview: (doc) => (doc?.slug ? `/preview?path=${encodeURIComponent(`/${doc.slug}`)}` : null),
+  },
+  access: { read: () => true, create: isEditor, update: isEditor, delete: isEditor },
+  versions: { maxPerDoc: 20 },
+  fields: [
+    { name: "title", type: "text", required: true },
+    {
+      name: "slug",
+      type: "select",
+      required: true,
+      unique: true,
+      options: [
+        { label: "Privacy policy (/privacy)", value: "privacy" },
+        { label: "Terms & conditions (/terms)", value: "terms" },
+      ],
+      admin: { position: "sidebar" },
+    },
+    { name: "lastUpdated", type: "date", required: true, admin: { position: "sidebar", date: { pickerAppearance: "dayOnly", displayFormat: "d MMM yyyy" } } },
+    { name: "summary", type: "textarea", admin: { description: "Plain-language summary shown at the top." } },
+    {
+      name: "sections",
+      type: "array",
+      minRows: 1,
+      admin: { components: { RowLabel: "/payload/admin/RowLabel#HeadingRowLabel" } },
+      fields: [
+        { name: "heading", type: "text", required: true },
+        {
+          name: "body",
+          type: "textarea",
+          required: true,
+          admin: { description: "Separate paragraphs with an empty line. Start a line with “- ” for a bullet." },
+        },
+      ],
+    },
+  ],
+  hooks: {
+    afterChange: [revalidateOnChange(TAGS.legal)],
+    afterDelete: [revalidateOnDelete(TAGS.legal)],
+  },
 };

@@ -11,18 +11,19 @@ export function Hero() {
       {/* Track photo, slightly zoomed like the Figma crop; drifts slower than the page */}
       <ParallaxLayer className="absolute inset-0">
       <Image
-        src="/images/hero-bg.png"
+        src="/images/hero-bg.webp"
         alt=""
         width={1536}
         height={1024}
-        priority
-        unoptimized
+        fetchPriority="high"
+        loading="eager"
+        sizes="(min-width: 768px) 115vw, 100vw"
         className="absolute left-0 top-[-13%] h-full w-full max-w-none object-cover object-[50%_90%] md:left-[-7.21%] md:top-[-18.02%] md:h-[117.99%] md:w-[114.41%] md:object-center"
       />
       </ParallaxLayer>
       {/* Fade into the page background */}
       <Image
-        src="/images/hero-fade.png"
+        src="/images/hero-fade.webp"
         alt=""
         width={1024}
         height={211}

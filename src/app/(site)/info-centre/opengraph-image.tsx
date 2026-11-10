@@ -9,6 +9,6 @@ export default function Image() {
     kicker: "HighRocks",
     title: "Hyrox Info Centre",
     subtitle: "Guides, station technique, pacing and training advice.",
-    photo: "/images/pages/info-hero.png",
+    photo: "/images/pages/info-hero.webp",
   });
 }

@@ -48,8 +48,7 @@ function Socials({
 export function Footer({ overlap = 50 }: { overlap?: number }) {
   return (
     <footer
-      id="terms"
-      className="pointer-events-none relative lg:-mt-[var(--overlap)] [&_a]:pointer-events-auto"
+            className="pointer-events-none relative lg:-mt-[var(--overlap)] [&_a]:pointer-events-auto"
       style={{ "--overlap": d(overlap) } as React.CSSProperties}
     >
       {/* Glow */}
@@ -91,7 +90,7 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
         </nav>
 
         <div className="footer-mobile-row h-8" aria-hidden />
-        <div className="footer-mobile-row grid grid-cols-[22%_1fr] items-center" aria-label="Highrocks">
+        <div className="footer-mobile-row grid grid-cols-[22%_1fr] items-center">
           <div className="aspect-square p-2 sm:p-3">
             <Svg name="logo-footer" width={264} height={263} className="h-auto w-full" />
           </div>
@@ -109,7 +108,10 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
         <div className="grid grid-cols-[22%_1fr] text-[11px] font-light leading-relaxed text-muted sm:text-[13px]">
           <div aria-hidden />
           <div className="flex flex-col items-start gap-3 px-4 py-6">
-            <span>Terms &amp; Conditions</span>
+            <span className="flex gap-4">
+              <a href="/terms" className="hover:underline">Terms &amp; Conditions</a>
+              <a href="/privacy" className="hover:underline">Privacy Policy</a>
+            </span>
             <p>&copy; 2026 Highrocks. All rights reserved.</p>
             <p>
               Built with &lt;3 by <a href="https://credes.in/" target="_blank" rel="noreferrer noopener" className="underline">Credes</a>
@@ -208,13 +210,13 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
         </p>
 
         {/* Bottom row */}
-        <a
-          href="#terms"
-          className="absolute -translate-y-1/2 font-light text-muted hover:underline"
+<div
+          className="absolute flex -translate-y-1/2 flex-col font-light text-muted"
           style={{ left: d(116), top: d(8185.5 - ORIGIN_Y), fontSize: d(14) }}
         >
-          Terms &amp; Conditions
-        </a>
+          <a href="/terms" className="inline-block min-h-6 py-1 hover:underline">Terms &amp; Conditions</a>
+          <a href="/privacy" className="inline-block min-h-6 py-1 hover:underline">Privacy Policy</a>
+        </div>
         <p
           className="absolute -translate-y-1/2 font-light text-muted"
           style={{ left: d(420), top: d(8185.5 - ORIGIN_Y), fontSize: d(14) }}

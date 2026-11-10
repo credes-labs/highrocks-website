@@ -9,6 +9,6 @@ export default function Image() {
     kicker: "HighRocks",
     title: "Hyrox FAQs",
     subtitle: "Race format, stations, divisions, finish times and pacing, answered.",
-    photo: "/images/pages/drill-skierg.png",
+    photo: "/images/pages/drill-skierg.webp",
   });
 }

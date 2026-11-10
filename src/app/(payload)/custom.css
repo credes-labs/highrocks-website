@@ -1,1 +1,40 @@
-/* Payload admin overrides. */
+/* HighRocks admin theme: the site's near-black and powder-blue accent on top of Payload's dark theme. */
+html[data-theme="dark"] {
+  --theme-bg: #101113;
+  --theme-input-bg: #17191d;
+  --theme-elevation-0: #101113;
+  --theme-elevation-50: #15171a;
+  --theme-elevation-100: #1b1d21;
+  --theme-elevation-150: #212429;
+  --theme-success-500: #b1c8ee;
+}
+
+.hr-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  color: var(--theme-text);
+  font-size: 26px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hr-dash {
+  margin-bottom: calc(var(--base) * 2);
+  padding: calc(var(--base) * 1.25);
+  border: 1px solid var(--theme-elevation-150);
+  border-radius: 8px;
+  background: radial-gradient(120% 140% at 100% 0%, rgba(30, 54, 84, 0.55), transparent 60%), var(--theme-elevation-50);
+}
+.hr-dash__head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--base); }
+.hr-dash__head h2 { margin: 0 0 4px; }
+.hr-dash__head p { margin: 0; color: var(--theme-elevation-600); }
+.hr-dash__links { display: flex; gap: var(--base); align-items: center; }
+.hr-dash__links a { color: #b1c8ee; text-decoration: none; font-weight: 500; }
+.hr-dash__links a:hover { text-decoration: underline; }
+.hr-dash__stats { list-style: none; margin: calc(var(--base) * 1.25) 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: calc(var(--base) * 0.75); }
+.hr-dash__stats a { display: flex; flex-direction: column; gap: 2px; padding: calc(var(--base) * 0.75); border-radius: 6px; background: var(--theme-elevation-100); text-decoration: none; color: inherit; transition: background 150ms; }
+.hr-dash__stats a:hover { background: var(--theme-elevation-150); }
+.hr-dash__stats strong { font-size: 30px; line-height: 1.1; color: #b1c8ee; }
+.hr-dash__stats span { color: var(--theme-elevation-600); font-size: 13px; }

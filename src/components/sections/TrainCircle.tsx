@@ -8,11 +8,11 @@ import { Reveal } from "@/components/motion/Reveal";
 type Station = { id: string; name: string; metric?: string; image: string };
 
 const STATIONS: Station[] = [
-  { id: "run-out", name: "Running", metric: "8 Kms", image: "/images/polaroid-run.png" },
-  { id: "sled", name: "Sled Push", metric: "12.5m", image: "/images/polaroid-sled.png" },
+  { id: "run-out", name: "Running", metric: "8 Kms", image: "/images/polaroid-run.webp" },
+  { id: "sled", name: "Sled Push", metric: "12.5m", image: "/images/polaroid-sled.webp" },
   { id: "endurance", name: "Endurance", image: "/images/journey/endurance.webp" },
-  { id: "run-back", name: "Running", metric: "8 Kms", image: "/images/polaroid-run.png" },
-  { id: "wallballs", name: "Wall Balls", metric: "100 R", image: "/images/polaroid-wallballs.png" },
+  { id: "run-back", name: "Running", metric: "8 Kms", image: "/images/polaroid-run.webp" },
+  { id: "wallballs", name: "Wall Balls", metric: "100 R", image: "/images/polaroid-wallballs.webp" },
   { id: "nutrition", name: "Nutrition", image: "/images/journey/nutrition.webp" },
 ];
 
@@ -106,7 +106,7 @@ function ticksFor(l: Layout) {
   return out;
 }
 
-function Card({ s, size, priority }: { s: Station; size: string; priority?: boolean }) {
+function Card({ s, size }: { s: Station; size: string }) {
   return (
     <figure className="bg-[#1b1c1f] p-[5%] pb-0 shadow-[0_24px_48px_-24px_rgba(0,0,0,0.9)]" style={{ width: size }}>
       <div className="relative aspect-square overflow-hidden bg-[#121316]">
@@ -115,7 +115,6 @@ function Card({ s, size, priority }: { s: Station; size: string; priority?: bool
           alt=""
           fill
           sizes="(max-width: 768px) 30vw, 16vw"
-          priority={priority}
           className="object-cover grayscale-[0.35] contrast-[1.05]"
         />
       </div>
@@ -199,7 +198,7 @@ function Track({ l, className }: { l: Layout; className: string }) {
               style={{ left: pct(x, l.w), top: pct(y, l.h), transform: `translate(-50%, -50%) rotate(${c.rot}deg)` }}
             >
               <Reveal y={40} scale={0.94} amount={0.4} delay={(i % 3) * 0.08}>
-                <Card s={s} size={`calc(${(l.card / l.w) * 100} * var(--track-w) / 100)`} priority={i === 0} />
+                <Card s={s} size={`calc(${(l.card / l.w) * 100} * var(--track-w) / 100)`} />
               </Reveal>
             </li>
           );

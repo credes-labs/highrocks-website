@@ -2,6 +2,7 @@
 
 import { motion, useMotionValueEvent, useReducedMotion, useScroll, useTransform, type MotionValue } from "motion/react";
 import { useRef } from "react";
+import { usePauseOffscreen } from "@/components/motion/usePauseOffscreen";
 import { featureStory } from "@/lib/content";
 
 type Story = (typeof featureStory)[number];
@@ -258,6 +259,7 @@ function Copy({ l, i, s, p }: { l: Layout; i: number; s: Story; p: MotionValue<n
 
 function Track({ l, className }: { l: Layout; className: string }) {
   const ref = useRef<HTMLDivElement>(null);
+  usePauseOffscreen(ref);
   const line = useRef<SVGPathElement>(null);
   const dot = useRef<SVGGElement>(null);
   const reduce = useReducedMotion();

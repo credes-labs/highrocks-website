@@ -9,6 +9,6 @@ export default function Image() {
     kicker: "HighRocks",
     title: "Hyrox pace calculator",
     subtitle: "Plan all 16 Hyrox splits, train every station, rehearse the race.",
-    photo: "/images/pages/features-hero.png",
+    photo: "/images/pages/features-hero.webp",
   });
 }

@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { useInView } from "motion/react";
+import { usePauseOffscreen } from "@/components/motion/usePauseOffscreen";
 import { Reveal } from "@/components/motion/Reveal";
 import { gutter } from "@/lib/design";
 import { AppleWatch, FitbitWatch, FitStage, GarminWatch, Rig, WhoopBand, useLive } from "@/components/ecosystem/Watches";
@@ -53,8 +54,10 @@ function WearableRow({ item }: { item: Wearable }) {
  * Screens cycle through live pace / heart / station views; click a watch to switch.
  */
 export function Ecosystem() {
+  const ref = useRef<HTMLElement>(null);
+  usePauseOffscreen(ref);
   return (
-    <section id="ecosystem" className="relative py-20 lg:py-[calc(110*var(--d))]">
+    <section ref={ref} id="ecosystem" className="relative py-20 lg:py-[calc(110*var(--d))]">
       <div className={gutter}>
         <Reveal>
           <Heading />
