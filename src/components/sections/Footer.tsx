@@ -75,9 +75,7 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
         </div>
 
         <nav aria-label="Footer">
-          {footerLinks
-            .filter((l) => l.label !== "Text")
-            .map((l, i) => (
+          {footerLinks.map((l, i) => (
               <a
                 key={l.label}
                 href={l.href}
@@ -111,7 +109,7 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
         <div className="grid grid-cols-[22%_1fr] text-[11px] font-light leading-relaxed text-muted sm:text-[13px]">
           <div aria-hidden />
           <div className="flex flex-col items-start gap-3 px-4 py-6">
-            <a href="#terms" className="hover:underline">Terms &amp; Conditions</a>
+            <span>Terms &amp; Conditions</span>
             <p>&copy; 2026 Highrocks. All rights reserved.</p>
             <p>
               Built with &lt;3 by <a href="https://credes.in/" target="_blank" rel="noreferrer noopener" className="underline">Credes</a>
@@ -175,13 +173,13 @@ export function Footer({ overlap = 50 }: { overlap?: number }) {
               {l.label}
             </a>
             <ul style={{ marginTop: d(40.056) }}>
-              {[0, 1, 2].map((r) => (
+              {l.children.map((c) => (
                 <li
-                  key={r}
+                  key={c.href}
                   className="font-grotesk capitalize tracking-[0.044em] text-muted"
                   style={{ fontSize: d(16), lineHeight: d(22.75), marginBottom: d(13.25) }}
                 >
-                  <a href={l.href}>Text</a>
+                  <a href={c.href} className="transition-colors hover:text-ink">{c.label}</a>
                 </li>
               ))}
             </ul>

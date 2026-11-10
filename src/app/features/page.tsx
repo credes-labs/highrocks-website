@@ -61,7 +61,7 @@ export default function FeaturesPage() {
         </section>
 
         {/* Dial + drill previews */}
-        <section aria-label="Drill guidance" className="features-drills relative">
+        <section id="drills" aria-label="Hyrox drill library" className="features-drills relative scroll-mt-20">
           {/* Mobile / tablet: heading, then the three drill previews as a swipeable row */}
           <div className="py-16 lg:hidden">
             <div className="px-5" style={fitMobile}>

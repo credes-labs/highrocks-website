@@ -118,7 +118,7 @@ export function FaqBrowser() {
       )}
 
       {sections.map((g) => (
-        <section key={g.id} className="mt-10">
+        <section key={g.id} id={g.id} className="mt-10 scroll-mt-28">
           <div className="mb-2 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
             <h2 className="display text-[clamp(40px,5vw,88px)]">{g.label}</h2>
             <p className="text-[15px] text-muted">{g.blurb}</p>

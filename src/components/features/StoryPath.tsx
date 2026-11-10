@@ -54,6 +54,27 @@ const MOBILE: Layout = {
 
 const cx = (l: Layout, i: number) => l.xs[i % 2];
 
+/** HighRocks logomark (Figma node 1445:1831), drawn around its own centre. */
+const MARK_PATHS = [
+  "M177.91 30.3091H233.529V85.6511C232.116 85.6511 230.708 85.6487 229.302 85.6511C214.071 85.6827 199.355 88.471 185.18 93.9892C173.642 98.4821 163.253 104.823 154.319 113.441C153.911 113.833 153.441 114.162 153.001 114.523L153.16 114.912H154.512C171.095 114.912 187.676 114.91 204.259 114.922C205.024 114.922 205.809 114.993 206.549 115.173C206.977 115.275 207.334 115.665 207.723 115.923C207.434 116.33 207.229 116.877 206.838 117.119C205.909 117.688 204.904 118.144 203.904 118.592C196.446 121.923 188.837 124.95 181.547 128.613C158.161 140.36 137.347 155.577 119.784 175.037C104.965 191.453 93.6672 209.987 86.1505 230.778C85.9183 231.419 85.7961 232.096 85.5932 232.858H30.2559V177.562H31.6199C37.3643 177.562 43.1136 177.431 48.8532 177.592C58.3059 177.857 67.5214 176.391 76.6294 174.099C90.091 170.71 102.682 165.391 113.895 157.095C118.029 154.036 121.813 150.59 125.257 146.777C125.658 146.331 126.044 145.873 126.401 145.462C124.272 145.462 122.184 145.384 120.104 145.474C108.099 145.993 96.0945 146.55 84.0899 147.098C75.9914 147.468 67.8954 147.855 59.797 148.213C58.7068 148.262 57.5848 148.313 56.5214 148.118C55.1696 147.872 54.8568 146.755 55.8688 145.815C56.5361 145.194 57.3672 144.629 58.2252 144.356C61.9383 143.17 65.6856 142.079 69.4281 140.988C91.4525 134.574 112.037 125.206 130.427 111.376C143.233 101.745 154.116 90.3339 162.505 76.6458C170.523 63.5664 175.544 49.4009 177.883 34.2809C178.079 33.0219 177.91 31.7093 177.91 30.3066V30.3091Z",
+  "M85.6983 30.352V85.565H30.2461V30.352H85.6983Z",
+  "M178.084 232.847V177.63H233.536V232.847H178.084Z"
+];
+
+function Marker({ size }: { size: number }) {
+  const k = (size * 0.6) / 203; // the mark spans ~203 units of its 264 × 263 box
+  return (
+    <>
+      <circle r={size / 2} fill="#101113" stroke="#b1c8ee" strokeWidth={size / 30} />
+      <g transform={`scale(${k}) translate(-131.9 -131.6)`}>
+        {MARK_PATHS.map((d) => (
+          <path key={d.slice(0, 12)} d={d} fill="#e5e1e4" />
+        ))}
+      </g>
+    </>
+  );
+}
+
 /** One continuous line: down onto each circle, around its outer half, then across to the next. */
 function buildPath(l: Layout) {
   const k = l.mobile ? 34 : 70;
@@ -238,21 +259,20 @@ function Copy({ l, i, s, p }: { l: Layout; i: number; s: Story; p: MotionValue<n
 function Track({ l, className }: { l: Layout; className: string }) {
   const ref = useRef<HTMLDivElement>(null);
   const line = useRef<SVGPathElement>(null);
-  const dot = useRef<SVGCircleElement>(null);
+  const dot = useRef<SVGGElement>(null);
   const reduce = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 55%", "end 85%"] });
   const p = useTransform(scrollYProgress, (v) => (reduce ? 1 : v));
   const d = buildPath(l);
   const drawn = useTransform(p, [0, 1], [0, 1]);
 
-  // A small peach marker — you — travels the line with the scroll.
+  // The HighRocks mark — you — travels the line with the scroll.
   useMotionValueEvent(p, "change", (v) => {
     const path = line.current;
     const c = dot.current;
     if (!path || !c) return;
     const pt = path.getPointAtLength(path.getTotalLength() * Math.min(1, Math.max(0, v)));
-    c.setAttribute("cx", String(pt.x));
-    c.setAttribute("cy", String(pt.y));
+    c.setAttribute("transform", `translate(${pt.x} ${pt.y})`);
   });
 
   return (
@@ -263,7 +283,9 @@ function Track({ l, className }: { l: Layout; className: string }) {
         {featureStory.map((s, i) => (
           <Stage key={s.id} l={l} i={i} s={s} p={p} />
         ))}
-        <circle ref={dot} cx={cx(l, 0)} cy={0} r={l.mobile ? 6 : 8} fill="#ffb598" />
+        <g ref={dot} transform={`translate(${cx(l, 0)} 0)`}>
+          <Marker size={l.mobile ? 30 : 46} />
+        </g>
       </svg>
       {featureStory.map((s, i) => (
         <Copy key={s.id} l={l} i={i} s={s} p={p} />

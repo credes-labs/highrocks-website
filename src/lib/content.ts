@@ -6,39 +6,54 @@ export const navLinks = [
 ] as const;
 
 export const footerLinks = [
-  { label: "Features", href: "/features" },
-  { label: "Pace Calculator", href: "/features#pace-calculator" },
-  { label: "Blogs", href: "/articles" },
-  { label: "Text", href: "#" },
-  { label: "Text", href: "#" },
+  {
+    label: "Features",
+    href: "/features",
+    children: [
+      { label: "Pace Calculator", href: "/features#pace-calculator" },
+      { label: "Drill Library", href: "/features#drills" },
+      { label: "Race Simulation", href: "/#features" },
+    ],
+  },
+  {
+    label: "Hyrox Guides",
+    href: "/articles",
+    children: [
+      { label: "Pacing a race", href: "/articles/how-to-pace-a-hyrox-race" },
+      { label: "The 8 stations", href: "/articles/hyrox-stations-explained" },
+      { label: "Your first race", href: "/articles/your-first-hyrox-race" },
+    ],
+  },
+  {
+    label: "Station Tips",
+    href: "/articles",
+    children: [
+      { label: "SkiErg", href: "/articles/how-to-do-skierg-efficiently" },
+      { label: "Sled push", href: "/articles/sled-push-technique" },
+      { label: "Wall balls", href: "/articles/wall-balls-strategy-for-hyrox" },
+    ],
+  },
+  {
+    label: "FAQs",
+    href: "/faqs",
+    children: [
+      { label: "Hyrox basics", href: "/faqs#hyrox" },
+      { label: "Training", href: "/faqs#pacing" },
+      { label: "Devices", href: "/faqs#devices" },
+    ],
+  },
+  {
+    label: "Info Centre",
+    href: "/info-centre",
+    children: [
+      { label: "Latest", href: "/info-centre" },
+      { label: "All articles", href: "/articles" },
+      { label: "Early access", href: "/#waitlist" },
+    ],
+  },
 ] as const;
 
-export type Article = {
-  slug: string;
-  title: string;
-  excerpt: string;
-  readTime: string;
-  posted: string;
-};
-
-/** Placeholder articles (the Figma file repeats one story). Replace with CMS data. */
-export const articles: Article[] = Array.from({ length: 12 }, (_, i) => ({
-  slug: `why-gen-z-is-obsessed-with-hyrox-${i + 1}`,
-  title: "'I spent £2,000 on one event': Why Gen Z is obsessed with Hyrox",
-  excerpt:
-    "Hyrox is a fitness craze that shows no signs of dying out - with 1.3m people expected to compete in an event ...",
-  readTime: "10 min",
-  posted: "2 hours ago",
-}));
-
-export const storyBody = [
-  "Hyrox is a fitness craze that shows no signs of dying out - with 1.3m people expected to compete in an event somewhere in the world this year.",
-  "The competition, which is split between running and fitness exercises, has proven particularly popular with young millennials and Generation Z - people in their twenties to early forties.",
-  "Its rapidly growing popularity has been attributed to social media.",
-  "Fashionable looks are often a non-negotiable for competitors, with many choosing to compete in high-end fitness brands, matching their outfits with their team members",
-  "Allana Falconer, who works in sustainability and started competing in 2023, says she has \"fallen in love\" with it.",
-  "She has competed in 20 different races across six countries and 12 different cities.",
-] as const;
+export { articles, getArticle, relatedArticles, type Article } from "./articles";
 
 export const featureTabs = [
   {

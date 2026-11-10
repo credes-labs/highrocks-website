@@ -10,7 +10,7 @@ import { StoryPath } from "@/components/features/StoryPath";
 export function Features() {
   return (
     <section id="features" className="relative scroll-mt-24" aria-labelledby="features-heading">
-      <div className={`pb-6 pt-24 lg:pb-0 lg:pt-[calc(140*var(--d))] ${gutter}`}>
+      <div className={`pb-6 pt-12 lg:pb-0 lg:pt-[calc(30*var(--d))] ${gutter}`}>
         <Reveal>
           <h2 id="features-heading" className="display text-[clamp(52px,9.4vw,172px)]">
             Four tools. One Hyrox race.
