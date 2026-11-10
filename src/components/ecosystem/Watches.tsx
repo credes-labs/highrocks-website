@@ -300,10 +300,10 @@ export function FitStage({ children }: { children: ReactNode }) {
   }, []);
   const s = k ?? 1;
   return (
-    <div ref={ref} className="relative w-full overflow-x-clip" style={{ height: STAGE_H * s + 40 * s }}>
+    <div ref={ref} className="relative w-full overflow-x-clip" style={{ height: (STAGE_H - 70) * s }}>
       <div
-        className="absolute left-1/2 top-[20px] origin-top transition-opacity duration-300"
-        style={{ width: STAGE_W, height: STAGE_H, transform: `translateX(-50%) scale(${s})`, opacity: k === null ? 0 : 1 }}
+        className="absolute left-1/2 top-0 origin-top transition-opacity duration-300"
+        style={{ width: STAGE_W, height: STAGE_H, transform: `translateX(-50%) translateY(${-35 * s}px) scale(${s})`, opacity: k === null ? 0 : 1 }}
       >
         {children}
       </div>

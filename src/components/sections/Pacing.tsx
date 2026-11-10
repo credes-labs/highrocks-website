@@ -61,7 +61,7 @@ export function Pacing() {
   const glow = useTransform(p, [0.5, 0.75, 1], [0, 0.55, 0.3]);
 
   const heading = (
-    <h2 className="whitespace-nowrap text-center text-[clamp(28px,3.01vw,52px)] font-normal capitalize leading-[1.154] text-accent">
+    <h2 className="whitespace-nowrap text-center text-[clamp(28px,3.01vw,52px)] font-[480] capitalize leading-[1.154] text-accent">
       <span className="text-ink">Built for </span>Better Pacing.
     </h2>
   );

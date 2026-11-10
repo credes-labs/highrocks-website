@@ -60,7 +60,7 @@ export function Ecosystem() {
           <Heading />
         </Reveal>
       </div>
-      <div className="mt-4 flex flex-col gap-2 overflow-x-clip lg:mt-8 lg:gap-6">
+      <div className="mt-4 flex flex-col overflow-x-clip lg:mt-8">
         {wearables.map((w) => (
           <WearableRow key={w.id} item={w} />
         ))}

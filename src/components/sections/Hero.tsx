@@ -31,12 +31,12 @@ export function Hero() {
       />
 
       <ScrollFade className="relative z-10 flex h-full w-full max-w-[711px] flex-col items-center px-5 pb-12 pt-[112px] text-center md:h-auto md:pb-0 md:pt-[max(150px,calc(299*var(--d)))]">
-        <h1 className="text-[clamp(34px,4.6vw,52px)] font-normal capitalize leading-[1.154] tracking-[-0.046em] text-accent">
+        <h1 className="text-[clamp(34px,4.6vw,52px)] font-[480] capitalize leading-[1.154] tracking-[-0.046em] text-accent">
           Master <span className="text-ink">the 8 runs.</span>
           <br />
           Predict <span className="text-ink">your finish.</span>
         </h1>
-        <p className="mt-[26px] text-[clamp(14px,1.4vw,16px)] capitalize leading-[22.75px] tracking-[0.044em] text-muted">
+        <p className="mt-[26px] text-[clamp(14px,1.4vw,16px)] font-[450] capitalize leading-[22.75px] tracking-[0.044em] text-muted">
           Training logs are boring. Race day surprises are worse. HighRocks fixes both.
         </p>
         <div className="mt-auto flex w-full flex-col gap-3 md:mt-14 md:w-auto md:flex-row md:flex-wrap md:items-center md:justify-center md:gap-[26px]">
