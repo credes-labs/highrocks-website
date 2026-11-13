@@ -4,10 +4,10 @@ import { Navbar } from "@/components/sections/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { DialTicks } from "@/components/features/DialTicks";
 import { SandbagCard, SkiErgCard, WallBallCard } from "@/components/features/DrillPhoneCards";
-import { PaceCalculator } from "@/components/features/PaceCalculator";
+import { PacePreview } from "@/components/pace/PacePreview";
 import "./features.css";
 import { d } from "@/lib/design";
-import { APP_ID, ORG_ID, WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
+import { APP_ID, WEBSITE_ID, breadcrumbLd, pageMetadata } from "@/lib/seo";
 import { absoluteUrl } from "@/lib/site";
 import { JsonLd } from "@/components/seo/JsonLd";
 
@@ -28,20 +28,6 @@ const jsonLd = [
     isPartOf: { "@id": WEBSITE_ID },
     about: { "@id": APP_ID },
     breadcrumb: breadcrumbLd([{ name: "Features", path: "/features" }]),
-  },
-  {
-    "@type": "WebApplication",
-    "@id": absoluteUrl("/features#pace-calculator"),
-    name: "HighRocks Hyrox Pace Calculator",
-    url: absoluteUrl("/features#pace-calculator"),
-    applicationCategory: "SportsApplication",
-    operatingSystem: "Any (web browser)",
-    browserRequirements: "Requires JavaScript",
-    isAccessibleForFree: true,
-    offers: { "@type": "Offer", price: "0", priceCurrency: "GBP" },
-    description:
-      "Enter a Hyrox goal finish time and get a target split for each of the 8 × 1 km runs, the 8 stations and the roxzone.",
-    publisher: { "@id": ORG_ID },
   },
 ];
 
@@ -138,7 +124,7 @@ export default function FeaturesPage() {
           </div>
         </section>
 
-        <PaceCalculator />
+        <PacePreview />
       </main>
       <Footer />
       <JsonLd data={jsonLd} />

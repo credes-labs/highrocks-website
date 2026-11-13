@@ -1,0 +1,17 @@
+.pace-page { max-width: 1600px; margin: auto; padding: 176px clamp(16px, 3.2vw, 56px) 96px; }
+.pace-page-head { max-width: 860px; margin-bottom: 40px; }
+.pace-crumbs { display: flex; gap: 10px; font: 11px var(--font-space-grotesk), sans-serif; letter-spacing: .14em; text-transform: uppercase; color: #7d8794; }
+.pace-crumbs a:hover { color: #b1c8ee; }
+.pace-page-head h1 { margin-top: 18px; font-weight: 400; font-size: clamp(40px, 5vw, 84px); line-height: 1.02; letter-spacing: -.05em; color: #e5e1e4; }
+.pace-page-head h1 span { color: #b1c8ee; }
+.pace-page-head p { margin-top: 18px; max-width: 62ch; font-size: clamp(15px, 1.15vw, 18px); line-height: 1.55; color: #c4c6ce; }
+
+.pace-method { margin-top: 88px; padding-top: 40px; border-top: 1px solid #24262b; }
+.pace-method h2 { font-weight: 400; font-size: clamp(26px, 2.4vw, 38px); letter-spacing: -.03em; color: #e5e1e4; }
+.pace-method dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px 40px; margin-top: 28px; }
+.pace-method dt { font-size: 16px; line-height: 1.4; color: #e5e1e4; }
+.pace-method dd { margin-top: 8px; font-size: 14px; line-height: 1.6; color: #a9adb6; }
+.pace-method-more { margin-top: 36px; font-size: 14px; color: #a9adb6; }
+.pace-method-more a { color: #b1c8ee; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 1023px) { .pace-page { padding-top: 120px; } }

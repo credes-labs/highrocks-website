@@ -6,7 +6,7 @@ const LANES = [262, 226] as const;
 const TICKS = Array.from({ length: 72 }, (_, i) => i * 5);
 
 const LINKS = [
-  { label: "Pace Calculator", href: "/features#pace-calculator" },
+  { label: "Pace Calculator", href: "/pace-calculator" },
   { label: "Info Centre", href: "/info-centre" },
   { label: "FAQs", href: "/faqs" },
 ] as const;

@@ -11,6 +11,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, lastModified: SITE_UPDATED, changeFrequency: "weekly", priority: 1, images: [`${SITE_URL}/images/hero-bg.webp`] },
     { url: `${SITE_URL}/features`, lastModified: SITE_UPDATED, changeFrequency: "monthly", priority: 0.9, images: [`${SITE_URL}/images/pages/features-hero.webp`] },
+    { url: `${SITE_URL}/pace-calculator`, lastModified: new Date("2026-11-12"), changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/faqs`, lastModified: SITE_UPDATED, changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/info-centre`, lastModified: latestArticle, changeFrequency: "weekly", priority: 0.7 },
     { url: `${SITE_URL}/articles`, lastModified: latestArticle, changeFrequency: "weekly", priority: 0.7 },

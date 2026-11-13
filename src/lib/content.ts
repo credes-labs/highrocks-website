@@ -1,7 +1,7 @@
 export const navLinks = [
   { label: "Features", href: "/features" },
   { label: "FAQs", href: "/faqs" },
-  { label: "Pace Calculator", href: "/features#pace-calculator" },
+  { label: "Pace Calculator", href: "/pace-calculator" },
   { label: "Info Centre", href: "/info-centre" },
 ] as const;
 
@@ -10,7 +10,7 @@ export const footerLinks = [
     label: "Features",
     href: "/features",
     children: [
-      { label: "Pace Calculator", href: "/features#pace-calculator" },
+      { label: "Pace Calculator", href: "/pace-calculator" },
       { label: "Drill Library", href: "/features#drills" },
       { label: "Race Simulation", href: "/#features" },
     ],

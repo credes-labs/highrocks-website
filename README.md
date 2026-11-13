@@ -14,7 +14,7 @@ on an empty database, seeds the starting FAQs, articles and photos. The first vi
 asks you to create the first admin user.
 
 ## Pages
-- `/` landing page · `/features` · `/faqs` · `/info-centre` · `/articles` · `/articles/[slug]`
+- `/` landing page · `/features` · `/pace-calculator` · `/faqs` · `/info-centre` · `/articles` · `/articles/[slug]`
 - `/admin` Payload CMS · `/api/*` Payload REST API (plus `/api/waitlist`)
 
 ## CMS (Payload)
@@ -53,8 +53,34 @@ Schema changes always go through migrations (`push: false`), so local and produc
 - `RESEND_API_KEY` + `EMAIL_FROM_ADDRESS`: real emails. Without them, emails are printed to the server log.
 - `NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY`: bot check on the waitlist forms.
 
-The Payload CLI runs with `--use-swc` (already set in the npm scripts) because its default `tsx`
-loader fails on Node 24.22.0. Payload officially asks for Node `^22.23.4 || >=24.22.1`.
+The Payload CLI uses its default `tsx` loader. Avoid `--use-swc` on Windows: Smart App Control blocks
+SWC's unsigned native binary (`LoadLibraryExW failed`). Payload officially asks for Node `^22.23.4 || >=24.22.1`.
+
+## Pace calculator
+`src/lib/pacing/engine.ts` is the deterministic pacing engine from the pacing spec:
+1. Fixed base split: runs 58%, stations 38%, transitions 4% of the target.
+2. Station times from normalised weights: Wall balls / Burpee broad jump 1.30, Sled push / pull 1.20, Lunges 1.15,
+   SkiErg 1.10, Row 1.00, Farmers carry 0.90.
+3. `engine_factor` (0.92–1.08) scales runs only; `strength_factor` (0.85–1.15) scales stations only.
+4. Doubles: stations × 1 / (2 × `team_efficiency`), with efficiency between 0.80 and 1.00.
+5. T_final = runs + stations + transitions. It is not renormalised, so the gap to the target is shown.
+
+Outputs also include each component's share of T_final, the delta vs base for each run and station, and drill goals
+at 90% of each station time. The engine can also back-calculate the factors from a past race. `npm test` runs the tests in `tests/`.
+
+`/pace-calculator` is the full tool:
+- **Quick setup:** the onboarding wizard. Plain-English answers set the engine factor, strength factor, team size
+  and (Doubles only) team efficiency, then a summary shows the derived values, a target slider and a three-number preview.
+- **Fine-tune:** sliders and number fields for every input.
+- **Import a race:** fill in a past result by hand, drop a file (CSV, text or JSON), or paste the splits table
+  copied from results.hyrox.com. `src/lib/pacing/import.ts` parses it and also reads HighRocks CSV and data-file
+  exports, so a plan can move between devices.
+- **Share your plan:** a branded 1080 × 1920 PNG card drawn on a canvas (`src/components/pace/shareCard.ts`),
+  splits CSV, a data file (.json) and a shareable link.
+- Also: charts (timeline, race clock, shares, delta vs base, station budget, gap breakdown), a split ledger,
+  shareable URLs and CSV export.
+
+`/features` shows a live preview that opens the full tool with the same plan.
 
 ## Waitlist
 `POST /api/waitlist` validates the form, drops bots (hidden honeypot field, per-IP rate limit, optional
