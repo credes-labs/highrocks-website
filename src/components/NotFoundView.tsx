@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { ReactNode } from "react";
 import { LOGOMARK_PATHS } from "@/lib/logomark";
 
 const C = 300; // centre of the 600 × 600 track
@@ -73,26 +74,39 @@ function Track() {
   );
 }
 
-/** Shared 404 view for unmatched URLs and missing articles. */
-export function NotFoundView() {
+/**
+ * Shared "off course" view: the 404 pages, and (with other copy and a retry button) the error pages.
+ */
+export function NotFoundView({
+  eyebrow = "Error 404 · Off course",
+  title = (
+    <>
+      Wrong
+      <br />
+      lane.
+    </>
+  ),
+  body = "This page isn’t on the race map. It may have moved, or the link has a typo. Head back to the start line, or pick up the course from one of these stations.",
+  action,
+}: {
+  eyebrow?: string;
+  title?: ReactNode;
+  body?: string;
+  /** Extra primary action shown before "Back to the start" (e.g. Try again). */
+  action?: ReactNode;
+} = {}) {
   return (
     <main className="relative flex min-h-[100svh] items-center overflow-hidden px-4 py-24 sm:px-6 lg:px-8">
       <div className="mx-auto grid w-full max-w-[1400px] items-center gap-12 lg:grid-cols-[1fr_minmax(0,560px)] lg:gap-20">
         <div className="order-2 lg:order-1">
-          <p className="font-grotesk text-[12px] uppercase tracking-[0.3em] text-accent">Error 404 · Off course</p>
-          <h1 className="display mt-5 text-[clamp(64px,11vw,184px)]">
-            Wrong
-            <br />
-            lane.
-          </h1>
-          <p className="lede mt-6 max-w-[520px]">
-            This page isn&apos;t on the race map. It may have moved, or the link has a typo. Head back to the
-            start line, or pick up the course from one of these stations.
-          </p>
+          <p className="font-grotesk text-[12px] uppercase tracking-[0.3em] text-accent">{eyebrow}</p>
+          <h1 className="display mt-5 text-[clamp(64px,11vw,184px)]">{title}</h1>
+          <p className="lede mt-6 max-w-[520px]">{body}</p>
           <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+            {action}
             <Link
               href="/"
-              className="inline-flex h-[54px] items-center justify-center bg-accent px-8 font-grotesk text-[13px] font-bold uppercase tracking-[0.12em] text-[#0c1420] transition-[filter] hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+              className={`inline-flex h-[54px] items-center justify-center bg-accent px-8 font-grotesk text-[13px] font-bold uppercase tracking-[0.12em] text-[#0c1420] transition-[filter] hover:brightness-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent ${action ? "!bg-transparent border border-white/30 !text-ink" : ""}`}
             >
               Back to the start
             </Link>

@@ -46,7 +46,8 @@ export function ArticlesCarousel({ articles }: { articles: Article[] }) {
                   alt=""
                   width={1024}
                   height={576}
-                  sizes="30vw"
+                  sizes="(min-width: 640px) 30vw, 92vw"
+                  loading={i === 0 ? "eager" : undefined}
                   className="absolute inset-0 size-full object-cover"
                 />
               </Link>

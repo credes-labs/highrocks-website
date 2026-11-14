@@ -59,7 +59,7 @@ export function CategoryTrio({ tiles }: { tiles: InfoCentreTile[] }) {
 
       {/* Mobile / tablet */}
       <div className="relative mx-auto grid max-w-3xl gap-14 px-5 py-16 sm:grid-cols-3 lg:hidden">
-        {categories.map((c) => (
+        {categories.map((c, i) => (
           <div key={c.id} className="flex flex-col gap-4">
             <h2 className="headline text-[56px]">{c.tile.heading}</h2>
             <Image
@@ -68,6 +68,7 @@ export function CategoryTrio({ tiles }: { tiles: InfoCentreTile[] }) {
               width={1448}
               height={1086}
               sizes="(min-width: 640px) 30vw, 90vw"
+              loading={i === 0 ? "eager" : undefined}
               className="aspect-[348/268] w-full object-cover"
             />
             <p className="text-[22px] leading-[1.25] tracking-[-0.03em] text-ink">{c.tile.title}</p>
